@@ -1,0 +1,20 @@
+# Git & IDE
+.git
+.gitignore
+.idea
+.vscode
+*.swp
+
+# Node / JS
+frontend/node_modules
+frontend/dist
+frontend/.vite
+
+# Maven / Java
+backend/target
+*.class
+*.jar
+
+# OS files
+.DS_Store
+Thumbs.db

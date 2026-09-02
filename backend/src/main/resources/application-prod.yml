@@ -1,0 +1,58 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  application:
+    name: hansanie-portfolio-backend
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:h2:mem:portfoliodb;DB_CLOSE_DELAY=-1}
+    username: ${SPRING_DATASOURCE_USERNAME:sa}
+    password: ${SPRING_DATASOURCE_PASSWORD:}
+    driver-class-name: ${SPRING_DATASOURCE_DRIVER:org.h2.Driver}
+
+  h2:
+    console:
+      enabled: false
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: ${SPRING_JPA_DIALECT:org.hibernate.dialect.H2Dialect}
+        format_sql: false
+
+  # Serve static React build from classpath:/static/
+  web:
+    resources:
+      static-locations: classpath:/static/
+      cache:
+        period: 86400
+
+# Springdoc - keep Swagger available in prod (can be disabled via env)
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+# Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: never
+
+# Portfolio Metadata
+portfolio:
+  candidate:
+    name: "Kalatuwawage Hansanie Prabodha"
+    title: "Full-Stack Systems Engineer | Native Mobile & Enterprise Java Architect"
+    email: "hansanieprabodha@gmail.com"
+    github: "https://github.com/Hansanie22"
+    linkedin: "https://linkedin.com/in/hansanie-prabodha"

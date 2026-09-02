@@ -1,0 +1,9 @@
+package com.hansanie.portfolio.repository;
+
+import com.hansanie.portfolio.model.Qualification;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface QualificationRepository extends JpaRepository<Qualification, Long> {
+}
