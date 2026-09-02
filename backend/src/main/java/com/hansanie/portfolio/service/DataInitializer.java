@@ -88,7 +88,7 @@ public class DataInitializer implements CommandLineRunner {
                 "Google Maps Live store locator and delivery routing",
                 "Real-time Push Notifications via Firebase Cloud Messaging (FCM)"
         ));
-        p1.setSystemArchitectureFlow("Android UI (XML/Activities) ➔ MVVM ViewModel (LiveData/State) ➔ Repository Layer ➔ [Local Room DB / Remote Retrofit REST API] ➔ SensorManager (Accelerometer Listener) ➔ Jetpack WorkManager Scheduler");
+        p1.setSystemArchitectureFlow("Android UI (XML/Activities) -> MVVM ViewModel (LiveData/State) -> Repository Layer -> [Local Room DB / Remote Retrofit REST API] -> SensorManager (Accelerometer Listener) -> Jetpack WorkManager Scheduler");
         projectRepository.save(p1);
 
         // Project 2: Velora / Rush Jewels POS
@@ -115,7 +115,7 @@ public class DataInitializer implements CommandLineRunner {
                 "Cashier shift open/close logs and cash-in-drawer reconciliation",
                 "Dynamic PDF/thermal receipt invoice generation and customer audit trail"
         ));
-        p2.setSystemArchitectureFlow("Touch POS Client (ES6+) ➔ Spring Boot Security Filter ➔ POS Service / Transactional Engine ➔ Spring Data JPA (HikariCP) ➔ TiDB/MySQL Database ➔ Cloudinary Media Storage ➔ Multi-Stage Docker on Render");
+        p2.setSystemArchitectureFlow("Touch POS Client (ES6+) -> Spring Boot Security Filter -> POS Service / Transactional Engine -> Spring Data JPA (HikariCP) -> TiDB/MySQL Database -> Cloudinary Media Storage -> Multi-Stage Docker on Render");
         projectRepository.save(p2);
 
         // Project 3: AuraCraft / Ceylon Letter Co ERP
@@ -140,7 +140,7 @@ public class DataInitializer implements CommandLineRunner {
                 "Custom engraving matrix calculations and proof approvals",
                 "Real-time sales velocity and revenue forecasting dashboards via Chart.js"
         ));
-        p3.setSystemArchitectureFlow("Interactive Client ➔ Spring Boot REST API ➔ BOM Deduction Engine (@Transactional) ➔ Spring Quartz/Cron Schedulers ➔ Outbound Cloud Webhooks ➔ MySQL DB & Analytics Dashboards");
+        p3.setSystemArchitectureFlow("Interactive Client -> Spring Boot REST API -> BOM Deduction Engine (@Transactional) -> Spring Quartz/Cron Schedulers -> Outbound Cloud Webhooks -> MySQL DB & Analytics Dashboards");
         projectRepository.save(p3);
     }
 

@@ -63,7 +63,7 @@ export const fetchProjects = async () => {
           'Google Maps Live store locator and delivery routing',
           'Real-time Push Notifications via Firebase Cloud Messaging (FCM)'
         ],
-        systemArchitectureFlow: 'Android UI (XML/Activities) ➔ MVVM ViewModel (LiveData/State) ➔ Repository Layer ➔ [Local Room DB / Remote Retrofit REST API] ➔ SensorManager (Accelerometer Listener) ➔ Jetpack WorkManager Scheduler'
+        systemArchitectureFlow: 'Android UI (XML/Activities) -> MVVM ViewModel (LiveData/State) -> Repository Layer -> [Local Room DB / Remote Retrofit REST API] -> SensorManager (Accelerometer Listener) -> Jetpack WorkManager Scheduler'
       },
       {
         id: 2,
@@ -89,7 +89,7 @@ export const fetchProjects = async () => {
           'Cashier shift open/close logs and cash-in-drawer reconciliation',
           'Dynamic PDF/thermal receipt invoice generation and customer audit trail'
         ],
-        systemArchitectureFlow: 'Touch POS Client (ES6+) ➔ Spring Boot Security Filter ➔ POS Service / Transactional Engine ➔ Spring Data JPA (HikariCP) ➔ TiDB/MySQL Database ➔ Cloudinary Media Storage ➔ Multi-Stage Docker on Render'
+        systemArchitectureFlow: 'Touch POS Client (ES6+) -> Spring Boot Security Filter -> POS Service / Transactional Engine -> Spring Data JPA (HikariCP) -> TiDB/MySQL Database -> Cloudinary Media Storage -> Multi-Stage Docker on Render'
       },
       {
         id: 3,
@@ -113,7 +113,7 @@ export const fetchProjects = async () => {
           'Custom engraving matrix calculations and proof approvals',
           'Real-time sales velocity and revenue forecasting dashboards via Chart.js'
         ],
-        systemArchitectureFlow: 'Interactive Client ➔ Spring Boot REST API ➔ BOM Deduction Engine (@Transactional) ➔ Spring Quartz/Cron Schedulers ➔ Outbound Cloud Webhooks ➔ MySQL DB & Analytics Dashboards'
+        systemArchitectureFlow: 'Interactive Client -> Spring Boot REST API -> BOM Deduction Engine (@Transactional) -> Spring Quartz/Cron Schedulers -> Outbound Cloud Webhooks -> MySQL DB & Analytics Dashboards'
       }
     ];
   }

@@ -92,7 +92,7 @@ export default function ResumeModal({ isOpen, onClose }) {
                 KALATUWAWAGE
               </h1>
               <h1 style={{ fontSize: '2.1rem', fontWeight: '900', color: '#1e3a8a', letterSpacing: '0.04em', lineHeight: '1.1', textTransform: 'uppercase', marginBottom: '8px' }}>
-                HANSANIE
+                HANSANIE PRABODHA
               </h1>
               
               <div style={{ fontSize: '1.15rem', fontWeight: '800', color: '#0d9488', letterSpacing: '0.05em', textTransform: 'uppercase', marginBottom: '10px' }}>
