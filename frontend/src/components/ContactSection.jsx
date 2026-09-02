@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Send, User, Building2, MessageSquare, CheckCircle2, Github, Linkedin, MapPin, Clock, Copy, Check } from 'lucide-react';
+import { Mail, Phone, Send, User, Building2, MessageSquare, CheckCircle2, Github, Linkedin, MapPin, Clock, Copy, Check } from 'lucide-react';
 import { submitContact, recordAnalyticsEvent } from '../services/api';
 
 export default function ContactSection() {
@@ -78,6 +78,18 @@ export default function ContactSection() {
               </div>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <div style={{ width: '38px', height: '38px', borderRadius: '10px', background: 'rgba(56, 189, 248, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#38bdf8' }}>
+                  <Phone size={18} />
+                </div>
+                <div>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)', textTransform: 'uppercase', fontWeight: '600' }}>Phone / Mobile</div>
+                  <a href="tel:+94761624810" style={{ color: 'var(--text-primary)', textDecoration: 'none', fontSize: '0.9rem', fontWeight: '500' }}>
+                    +94 76 162 4810 (0761624810)
+                  </a>
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                 <div style={{ width: '38px', height: '38px', borderRadius: '10px', background: 'rgba(99, 102, 241, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#818cf8' }}>
                   <Linkedin size={18} />
                 </div>
@@ -106,9 +118,9 @@ export default function ContactSection() {
                   <MapPin size={18} />
                 </div>
                 <div>
-                  <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)', textTransform: 'uppercase', fontWeight: '600' }}>Location</div>
-                  <span style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
-                    Padukka, Sri Lanka (Open for Remote & Relocation)
+                  <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)', textTransform: 'uppercase', fontWeight: '600' }}>Address & Work Preference</div>
+                  <span style={{ color: 'var(--text-secondary)', fontSize: '0.88rem' }}>
+                    127 A, Samagipura, Angamuwa, Padukka (Open to Remote Work & Relocation)
                   </span>
                 </div>
               </div>

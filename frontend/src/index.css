@@ -319,3 +319,85 @@ body {
     display: none !important;
   }
 }
+
+/* ============================================================
+   Print Styles for Clean High-Quality PDF Resume Export
+   ============================================================ */
+@media print {
+  @page {
+    margin: 12mm 15mm;
+    size: A4 portrait;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  nav, main, footer, .modal-actions-bar, .modal-close-btn {
+    display: none !important;
+  }
+
+  .modal-overlay {
+    position: static !important;
+    background: none !important;
+    padding: 0 !important;
+    backdrop-filter: none !important;
+    display: block !important;
+  }
+
+  .resume-sheet-container {
+    max-width: 100% !important;
+    max-height: none !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #0f172a !important;
+  }
+
+  .resume-printable-area {
+    color: #0f172a !important;
+  }
+
+  .resume-name {
+    color: #0f172a !important;
+  }
+
+  .resume-role {
+    color: #0284c7 !important;
+  }
+
+  .resume-section-title {
+    color: #0284c7 !important;
+    border-bottom: 1.5px solid #0284c7 !important;
+    margin-top: 14px !important;
+  }
+
+  .resume-printable-area * {
+    color: #0f172a !important;
+    border-color: #cbd5e1 !important;
+  }
+
+  .resume-printable-area a {
+    color: #0284c7 !important;
+    text-decoration: none !important;
+  }
+
+  .resume-printable-area strong {
+    color: #0f172a !important;
+  }
+
+  .resume-printable-area ul {
+    margin-bottom: 6px !important;
+  }
+
+  .resume-printable-area li {
+    margin-bottom: 3px !important;
+    color: #334155 !important;
+  }
+}
+
