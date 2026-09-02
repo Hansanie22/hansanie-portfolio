@@ -1,29 +1,29 @@
 import React, { useState } from 'react';
-import { BookOpen, ShieldCheck, ChevronRight, Zap, CheckCircle2, Cpu, Database, Smartphone } from 'lucide-react';
+import { BookOpen, CheckCircle2, Cpu, Database, Smartphone, ArrowRight } from 'lucide-react';
 
 export default function CaseStudiesDeepDive({ caseStudies }) {
   const [activeStudy, setActiveStudy] = useState(caseStudies && caseStudies[0] ? caseStudies[0].topicSlug : '');
 
-  const current = caseStudies && caseStudies.find(cs => cs.topicSlug === activeStudy) || caseStudies[0];
+  const current = caseStudies && caseStudies.find(cs => cs.topicSlug === activeStudy) || (caseStudies && caseStudies[0]);
 
   return (
-    <section id="casestudies" style={{ padding: '80px 0', position: 'relative' }}>
+    <section id="casestudies" className="section" style={{ background: 'rgba(255, 255, 255, 0.01)' }}>
       <div className="container">
         
         <div className="section-header">
-          <div className="badge badge-purple" style={{ marginBottom: '10px' }}>
-            <BookOpen size={14} /> Architectural Proof of Work
+          <div className="badge badge-indigo">
+            <BookOpen size={13} /> Engineering Case Studies
           </div>
           <h2 className="section-title">
-            Engineering Case Studies & <span className="gradient-purple">Problem Solving</span>
+            Technical Problem Solving & <span className="gradient-text">Architecture</span>
           </h2>
           <p className="section-subtitle">
-            Senior developers are evaluated by how they solve non-trivial edge cases, concurrency challenges, and domain bottlenecks. Here are 3 deep-dive case studies from Hansanie's production systems.
+            A deeper look at key engineering challenges, concurrency handling, sensor integrations, and transactional integrity across my systems.
           </p>
         </div>
 
         {/* Tab Selector */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', flexWrap: 'wrap', marginBottom: '32px' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', flexWrap: 'wrap', marginBottom: '28px' }}>
           {caseStudies && caseStudies.map((cs) => {
             const isSelected = (current && current.topicSlug === cs.topicSlug);
             return (
@@ -31,12 +31,12 @@ export default function CaseStudiesDeepDive({ caseStudies }) {
                 key={cs.topicSlug}
                 onClick={() => setActiveStudy(cs.topicSlug)}
                 className={`btn btn-sm ${isSelected ? 'btn-primary' : 'btn-secondary'}`}
-                style={{ borderRadius: '12px', padding: '10px 18px' }}
+                style={{ borderRadius: '10px' }}
               >
-                {cs.topicSlug === 'inventory-bom-deduction' && <Database size={15} />}
-                {cs.topicSlug === 'sensor-shake-rewards' && <Smartphone size={15} />}
-                {cs.topicSlug === 'pos-barcode-split-payment' && <Cpu size={15} />}
-                <span>{cs.topicSlug === 'inventory-bom-deduction' ? 'Spring Boot BOM Engine' : cs.topicSlug === 'sensor-shake-rewards' ? 'Android Sensor Shake Engine' : 'Touch POS Sub-50ms Engine'}</span>
+                {cs.topicSlug === 'inventory-bom-deduction' && <Database size={14} />}
+                {cs.topicSlug === 'sensor-shake-rewards' && <Smartphone size={14} />}
+                {cs.topicSlug === 'pos-barcode-split-payment' && <Cpu size={14} />}
+                <span>{cs.topicSlug === 'inventory-bom-deduction' ? 'Spring Boot BOM Engine' : cs.topicSlug === 'sensor-shake-rewards' ? 'Android Accelerometer Sensor' : 'Retail POS Sub-50ms Engine'}</span>
               </button>
             );
           })}
@@ -44,14 +44,13 @@ export default function CaseStudiesDeepDive({ caseStudies }) {
 
         {/* Active Case Study Detail Box */}
         {current && (
-          <div className="glass-panel" style={{
-            padding: '36px',
-            borderRadius: '24px',
-            border: '1px solid rgba(168, 85, 247, 0.3)',
-            boxShadow: '0 0 35px rgba(168, 85, 247, 0.12)'
+          <div className="card" style={{
+            padding: '32px',
+            background: 'var(--bg-surface)',
+            borderRadius: '20px'
           }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px', marginBottom: '16px' }}>
-              <span className="badge badge-purple">
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '10px', marginBottom: '16px' }}>
+              <span className="badge badge-indigo">
                 System: {current.relatedProject}
               </span>
               <span className="badge badge-emerald" style={{ fontSize: '0.78rem' }}>
@@ -59,40 +58,40 @@ export default function CaseStudiesDeepDive({ caseStudies }) {
               </span>
             </div>
 
-            <h3 style={{ fontSize: '1.5rem', fontWeight: '800', color: '#fff', marginBottom: '8px' }}>
+            <h3 style={{ fontSize: '1.35rem', fontWeight: '800', color: '#fff', marginBottom: '6px' }}>
               {current.title}
             </h3>
-            <p style={{ color: '#c084fc', fontSize: '0.95rem', fontWeight: '600', marginBottom: '28px' }}>
+            <p style={{ color: 'var(--color-brand)', fontSize: '0.92rem', fontWeight: '600', marginBottom: '24px' }}>
               {current.subtitle}
             </p>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px' }}>
               {/* Problem Column */}
               <div style={{
-                background: 'rgba(239, 68, 68, 0.05)',
-                border: '1px solid rgba(239, 68, 68, 0.2)',
-                borderRadius: '16px',
-                padding: '24px'
+                background: 'rgba(244, 63, 94, 0.04)',
+                border: '1px solid rgba(244, 63, 94, 0.15)',
+                borderRadius: '14px',
+                padding: '20px'
               }}>
-                <div style={{ fontSize: '0.82rem', color: '#f87171', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '8px' }}>
-                  ❌ The Real-World Engineering Problem
+                <div style={{ fontSize: '0.78rem', color: '#fb7185', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '8px' }}>
+                  The Challenge / Problem
                 </div>
-                <p style={{ color: '#e2e8f0', fontSize: '0.9rem', lineHeight: 1.65 }}>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: 1.6 }}>
                   {current.businessProblem}
                 </p>
               </div>
 
               {/* Solution Column */}
               <div style={{
-                background: 'rgba(0, 242, 254, 0.05)',
-                border: '1px solid rgba(0, 242, 254, 0.2)',
-                borderRadius: '16px',
-                padding: '24px'
+                background: 'rgba(56, 189, 248, 0.04)',
+                border: '1px solid rgba(56, 189, 248, 0.15)',
+                borderRadius: '14px',
+                padding: '20px'
               }}>
-                <div style={{ fontSize: '0.82rem', color: '#00f2fe', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '8px' }}>
-                  ⚡ The Architectural Solution
+                <div style={{ fontSize: '0.78rem', color: 'var(--color-brand)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '8px' }}>
+                  The Engineering Solution
                 </div>
-                <p style={{ color: '#e2e8f0', fontSize: '0.9rem', lineHeight: 1.65 }}>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: 1.6 }}>
                   {current.technicalSolution}
                 </p>
               </div>
@@ -100,16 +99,16 @@ export default function CaseStudiesDeepDive({ caseStudies }) {
 
             {/* Highlights Footer */}
             <div style={{
-              marginTop: '24px',
-              padding: '20px',
-              background: 'rgba(255, 255, 255, 0.03)',
-              borderRadius: '14px',
-              border: '1px solid rgba(255, 255, 255, 0.06)'
+              marginTop: '20px',
+              padding: '16px 20px',
+              background: 'rgba(255, 255, 255, 0.02)',
+              borderRadius: '12px',
+              border: '1px solid var(--border-subtle)'
             }}>
-              <div style={{ fontSize: '0.8rem', color: '#fbbf24', fontWeight: '700', textTransform: 'uppercase', marginBottom: '6px' }}>
-                Key Technical Takeaways & Reliability Guarantees:
+              <div style={{ fontSize: '0.78rem', color: '#fbbf24', fontWeight: '700', textTransform: 'uppercase', marginBottom: '4px' }}>
+                Key Technical Takeaways & Reliability:
               </div>
-              <p style={{ color: '#cbd5e1', fontSize: '0.88rem', lineHeight: 1.6 }}>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.86rem', lineHeight: 1.55 }}>
                 {current.engineeringHighlights}
               </p>
             </div>

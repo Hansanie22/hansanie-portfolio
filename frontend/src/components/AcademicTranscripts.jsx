@@ -1,124 +1,91 @@
-import React, { useState } from 'react';
-import { Award, CheckCircle2, BookOpen, Star, GraduationCap, FileCheck } from 'lucide-react';
+import React from 'react';
+import { Award, CheckCircle2, GraduationCap, Star, BookOpen } from 'lucide-react';
 
 export default function AcademicTranscripts({ qualifications }) {
-  const [activeLevel, setActiveLevel] = useState('all');
-
-  const filtered = activeLevel === 'all' 
-    ? qualifications 
-    : qualifications.filter(q => q.level.toLowerCase().includes(activeLevel.toLowerCase()));
-
   return (
-    <section id="academics" style={{ padding: '80px 0', position: 'relative' }}>
+    <section id="education" className="section">
       <div className="container">
         
         <div className="section-header">
-          <div className="badge badge-gold" style={{ marginBottom: '10px' }}>
-            <Award size={14} /> Multi-Tier Academic Rigor & Theoretical Proof
+          <div className="badge badge-amber">
+            <GraduationCap size={13} /> Academic Foundation
           </div>
           <h2 className="section-title">
-            Academic Transcripts & <span className="gradient-gold">High Distinction Honors</span>
+            Education & <span className="gradient-text">Academic Distinctions</span>
           </h2>
           <p className="section-subtitle">
-            UK Level 4 & Level 5 Software Engineering credentials awarded with 10+ High Distinctions across Object-Oriented Design Patterns, Systems Analysis & Design (SAD), and Software Testing & QA.
+            Rigorous software engineering curriculum from UK awarding bodies backed by 10+ High Distinctions in Object-Oriented Design, SAD, Software Testing & Mobile Programming.
           </p>
         </div>
 
-        {/* Level Filters */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', flexWrap: 'wrap', marginBottom: '36px' }}>
-          <button
-            onClick={() => setActiveLevel('all')}
-            className={`btn btn-sm ${activeLevel === 'all' ? 'btn-primary' : 'btn-secondary'}`}
-          >
-            All Qualifications
-          </button>
-          <button
-            onClick={() => setActiveLevel('Level 5')}
-            className={`btn btn-sm ${activeLevel === 'Level 5' ? 'btn-primary' : 'btn-secondary'}`}
-          >
-            UK Level 5 (Higher Diploma)
-          </button>
-          <button
-            onClick={() => setActiveLevel('Level 4')}
-            className={`btn btn-sm ${activeLevel === 'Level 4' ? 'btn-primary' : 'btn-secondary'}`}
-          >
-            UK Level 4 (Diploma)
-          </button>
-          <button
-            onClick={() => setActiveLevel('BSc')}
-            className={`btn btn-sm ${activeLevel === 'BSc' ? 'btn-primary' : 'btn-secondary'}`}
-          >
-            BSc (Hons) Ongoing
-          </button>
-        </div>
-
-        {/* Qualifications Grid */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-          {filtered && filtered.map((q, index) => (
+        {/* Qualifications Cards */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          {qualifications && qualifications.map((q, index) => (
             <div 
               key={q.id || index}
-              className="glass-panel"
+              className="card card-hover"
               style={{
-                padding: '32px',
-                borderRadius: '24px',
-                border: '1px solid rgba(251, 191, 36, 0.3)',
-                boxShadow: '0 0 30px rgba(251, 191, 36, 0.08)'
+                padding: '28px',
+                background: 'var(--bg-surface)',
+                borderRadius: '18px'
               }}
             >
               {/* Header Info */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '16px', marginBottom: '20px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '14px', marginBottom: '16px' }}>
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
-                    <span className="badge badge-gold">
+                    <span className="badge badge-amber">
                       <Star size={12} fill="#fbbf24" /> {q.overallGrade}
                     </span>
-                    <span style={{ fontSize: '0.8rem', color: '#94a3b8' }}>
+                    <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)' }}>
                       {q.completionDate}
                     </span>
                   </div>
-                  <h3 style={{ fontSize: '1.45rem', fontWeight: '800', color: '#fff' }}>
+                  
+                  <h3 style={{ fontSize: '1.3rem', fontWeight: '800', color: '#fff' }}>
                     {q.title}
                   </h3>
-                  <div style={{ fontSize: '0.92rem', color: '#fbbf24', fontWeight: '600' }}>
+                  
+                  <div style={{ fontSize: '0.88rem', color: 'var(--color-brand)', fontWeight: '600' }}>
                     {q.awardingBody}
                   </div>
                 </div>
 
                 <div style={{ textAlign: 'right' }}>
-                  <div style={{ fontSize: '1.8rem', fontWeight: '800', color: '#fbbf24' }}>
+                  <div style={{ fontSize: '1.5rem', fontWeight: '800', color: '#fbbf24' }}>
                     {q.distinctionCount} Distinctions
                   </div>
-                  <div style={{ fontSize: '0.78rem', color: '#94a3b8' }}>
-                    Verified Modules Transcripts
+                  <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>
+                    Verified Modules
                   </div>
                 </div>
               </div>
 
-              <p style={{ color: '#cbd5e1', fontSize: '0.9rem', marginBottom: '20px', lineHeight: 1.6 }}>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', marginBottom: '18px', lineHeight: 1.6 }}>
                 {q.description}
               </p>
 
               {/* Module Distinction Pills */}
               <div>
-                <div style={{ fontSize: '0.82rem', color: '#94a3b8', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '10px' }}>
-                  Honors & Distinction Modules Breakdown:
+                <div style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '8px' }}>
+                  Distinction Modules:
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '10px' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '8px' }}>
                   {q.distinctionModules && q.distinctionModules.map((mod, mIdx) => (
                     <div 
                       key={mIdx}
                       style={{
                         display: 'flex',
                         alignItems: 'center',
-                        gap: '10px',
-                        background: 'rgba(251, 191, 36, 0.05)',
-                        border: '1px solid rgba(251, 191, 36, 0.2)',
-                        padding: '10px 14px',
-                        borderRadius: '10px'
+                        gap: '8px',
+                        background: 'rgba(255, 255, 255, 0.02)',
+                        border: '1px solid var(--border-subtle)',
+                        padding: '8px 12px',
+                        borderRadius: '8px'
                       }}
                     >
-                      <CheckCircle2 size={16} color="#fbbf24" style={{ flexShrink: 0 }} />
-                      <span style={{ fontSize: '0.86rem', color: '#fff', fontWeight: '500' }}>
+                      <CheckCircle2 size={14} color="#fbbf24" style={{ flexShrink: 0 }} />
+                      <span style={{ fontSize: '0.82rem', color: 'var(--text-primary)', fontWeight: '500' }}>
                         {mod}
                       </span>
                     </div>

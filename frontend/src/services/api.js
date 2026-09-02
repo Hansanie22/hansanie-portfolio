@@ -9,14 +9,14 @@ export const fetchProfile = async () => {
     console.warn('Using fallback profile data', err);
     return {
       fullName: 'Kalatuwawage Hansanie Prabodha',
-      title: 'Full-Stack Systems Engineer | Native Mobile & Enterprise Java Architect',
+      title: 'Full-Stack & Mobile Software Engineer',
       academicHeadline: 'BSc (Hons) Undergraduate | UK Level 4 & Level 5 Distinction Holder',
-      location: 'Padukka, Sri Lanka | Remote / Relocation | Open for Global Engineering Roles',
-      availabilityStatus: 'AVAILABLE FOR FULL-TIME / CONTRACT ROLES',
+      location: 'Padukka, Sri Lanka | Remote / Relocation | Open for Global Roles',
+      availabilityStatus: 'AVAILABLE FOR SOFTWARE ENGINEERING ROLES',
       githubUrl: 'https://github.com/Hansanie22',
       linkedinUrl: 'https://linkedin.com/in/hansanie-prabodha',
       email: 'hansanieprabodha@gmail.com',
-      summary: 'High-performing Systems Engineer specializing in Enterprise Java (Spring Boot 3), Native Mobile Architecture (Java 11/Android Jetpack), and Cloud Automation. Backed by 10+ High Distinctions in UK Level 4 & Level 5 Software Engineering qualifications and verified production deployments handling real-time POS, ERP Webhooks, and Sensor-driven hardware pipelines.',
+      summary: 'Software Engineering undergraduate specializing in Java (Spring Boot 3), React, Native Android (Java/MVVM), and Cloud Automation. Backed by high academic distinctions in UK Level 4 & Level 5 qualifications and hands-on experience architecting real-world POS, ERP Webhooks, and Sensor-driven mobile applications.',
       strategicHighlights: [
         'Enterprise Java 17 & Spring Boot 3 microservices with JWT, JPA, Cron Schedulers & Webhooks',
         'Native Android MVVM architect with Room DB, WorkManager, Hardware Sensors & FCM',

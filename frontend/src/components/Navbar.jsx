@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Terminal, Award, Briefcase, FileCode, Mail, ExternalLink, ShieldCheck, Sparkles } from 'lucide-react';
-import { recordAnalyticsEvent } from '../services/api';
+import { FileText, Mail, Github, Linkedin, Menu, X } from 'lucide-react';
 
-export default function Navbar({ profile }) {
+export default function Navbar({ onOpenResume }) {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,10 +13,14 @@ export default function Navbar({ profile }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleResumeClick = () => {
-    recordAnalyticsEvent('CV_DOWNLOAD', 'resume_pdf');
-    alert('CV Profile Generated: Downloading Kalatuwawage_Hansanie_Prabodha_Senior_SE_Resume.pdf');
-  };
+  const navLinks = [
+    { name: 'About', href: '#about' },
+    { name: 'Skills', href: '#skills' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'Case Studies', href: '#casestudies' },
+    { name: 'Education', href: '#education' },
+    { name: 'Contact', href: '#contact' },
+  ];
 
   return (
     <nav style={{
@@ -26,79 +30,141 @@ export default function Navbar({ profile }) {
       right: 0,
       zIndex: 100,
       padding: scrolled ? '12px 0' : '20px 0',
-      background: scrolled ? 'rgba(6, 9, 19, 0.88)' : 'transparent',
+      background: scrolled ? 'rgba(9, 13, 22, 0.85)' : 'transparent',
       backdropFilter: scrolled ? 'blur(16px)' : 'none',
-      borderBottom: scrolled ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid transparent',
-      transition: 'all 0.3s ease'
+      borderBottom: scrolled ? '1px solid var(--border-subtle)' : '1px solid transparent',
+      transition: 'var(--transition)'
     }}>
       <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        {/* Logo / Brand */}
+        
+        {/* Brand */}
         <a href="#hero" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '10px' }}>
           <div style={{
-            width: '38px',
-            height: '38px',
+            width: '36px',
+            height: '36px',
             borderRadius: '10px',
-            background: 'linear-gradient(135deg, #0284c7, #00f2fe)',
+            background: 'linear-gradient(135deg, #0284c7, #6366f1)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            color: '#050b14',
+            color: '#fff',
             fontWeight: '800',
-            fontSize: '1.1rem',
-            boxShadow: '0 0 15px rgba(0, 242, 254, 0.4)'
+            fontSize: '1rem',
+            boxShadow: '0 2px 10px rgba(56, 189, 248, 0.25)'
           }}>
             HP
           </div>
           <div>
-            <div style={{ fontWeight: '700', fontSize: '0.98rem', color: '#fff', letterSpacing: '-0.01em' }}>
-              HANSANIE PRABODHA
+            <div style={{ fontWeight: '700', fontSize: '0.95rem', color: '#fff' }}>
+              Hansanie Prabodha
             </div>
-            <div style={{ fontSize: '0.72rem', color: '#00f2fe', display: 'flex', alignItems: 'center', gap: '5px' }}>
-              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10b981', display: 'inline-block' }}></span>
-              Systems Engineer & Java Architect
+            <div style={{ fontSize: '0.72rem', color: 'var(--color-brand)', display: 'flex', alignItems: 'center', gap: '5px' }}>
+              <span className="status-indicator" style={{ width: '6px', height: '6px' }}></span>
+              Software Engineer
             </div>
           </div>
         </a>
 
-        {/* Navigation Links */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '28px' }} className="nav-links">
-          <a href="#strategy" style={{ color: '#94a3b8', textDecoration: 'none', fontSize: '0.88rem', fontWeight: '500', transition: 'color 0.2s' }}>
-            Why 3 vs 50
-          </a>
-          <a href="#matrix" style={{ color: '#94a3b8', textDecoration: 'none', fontSize: '0.88rem', fontWeight: '500' }}>
-            Capabilities
-          </a>
-          <a href="#projects" style={{ color: '#94a3b8', textDecoration: 'none', fontSize: '0.88rem', fontWeight: '500' }}>
-            Production Systems
-          </a>
-          <a href="#casestudies" style={{ color: '#94a3b8', textDecoration: 'none', fontSize: '0.88rem', fontWeight: '500' }}>
-            Architecture Proof
-          </a>
-          <a href="#academics" style={{ color: '#94a3b8', textDecoration: 'none', fontSize: '0.88rem', fontWeight: '500' }}>
-            Distinctions
-          </a>
-          <a href="#terminal" style={{ color: '#94a3b8', textDecoration: 'none', fontSize: '0.88rem', fontWeight: '500' }}>
-            API Sandbox
-          </a>
+        {/* Desktop Nav Links */}
+        <div className="nav-desktop" style={{ display: 'flex', alignItems: 'center', gap: '28px' }}>
+          {navLinks.map((link) => (
+            <a 
+              key={link.name} 
+              href={link.href}
+              style={{
+                color: 'var(--text-secondary)',
+                textDecoration: 'none',
+                fontSize: '0.88rem',
+                fontWeight: '500',
+                transition: 'color 0.2s'
+              }}
+              onMouseEnter={(e) => e.target.style.color = '#fff'}
+              onMouseLeave={(e) => e.target.style.color = 'var(--text-secondary)'}
+            >
+              {link.name}
+            </a>
+          ))}
         </div>
 
         {/* CTA Actions */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <button 
+            onClick={onOpenResume}
+            className="btn btn-secondary btn-sm"
+          >
+            <FileText size={14} color="#38bdf8" /> Resume
+          </button>
+          
           <a 
             href="#contact" 
-            className="btn btn-outline-cyan btn-sm"
-            style={{ textDecoration: 'none' }}
-          >
-            <Mail size={14} /> Hire Hansanie
-          </a>
-          <button 
-            onClick={handleResumeClick}
             className="btn btn-primary btn-sm"
           >
-            <FileCode size={14} /> Download CV
+            <Mail size={14} /> Get in Touch
+          </a>
+
+          {/* Mobile Menu Toggle */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            style={{
+              display: 'none',
+              background: 'transparent',
+              border: 'none',
+              color: '#fff',
+              cursor: 'pointer',
+              padding: '6px'
+            }}
+            className="mobile-toggle"
+          >
+            {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
+
       </div>
+
+      {/* Mobile Drawer */}
+      {mobileMenuOpen && (
+        <div style={{
+          background: 'var(--bg-surface)',
+          borderBottom: '1px solid var(--border-subtle)',
+          padding: '20px 24px',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '16px'
+        }}>
+          {navLinks.map((link) => (
+            <a 
+              key={link.name} 
+              href={link.href}
+              onClick={() => setMobileMenuOpen(false)}
+              style={{
+                color: 'var(--text-primary)',
+                textDecoration: 'none',
+                fontSize: '0.95rem',
+                fontWeight: '500'
+              }}
+            >
+              {link.name}
+            </a>
+          ))}
+          <div style={{ display: 'flex', gap: '10px', paddingTop: '10px', borderTop: '1px solid var(--border-subtle)' }}>
+            <button 
+              onClick={() => { setMobileMenuOpen(false); onOpenResume(); }}
+              className="btn btn-secondary btn-sm"
+              style={{ flex: 1 }}
+            >
+              <FileText size={14} /> View Resume
+            </button>
+            <a 
+              href="#contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className="btn btn-primary btn-sm"
+              style={{ flex: 1 }}
+            >
+              Contact Me
+            </a>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }

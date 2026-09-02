@@ -39,26 +39,26 @@ public class DataInitializer implements CommandLineRunner {
     private void seedProfile() {
         Profile p = new Profile();
         p.setFullName("Kalatuwawage Hansanie Prabodha");
-        p.setTitle("Full-Stack Systems Engineer | Native Mobile & Enterprise Java Architect");
+        p.setTitle("Full-Stack & Mobile Software Engineer");
         p.setAcademicHeadline("BSc (Hons) Undergraduate | UK Level 4 & Level 5 Distinction Holder");
-        p.setLocation("Padukka, Sri Lanka | Remote / Relocation | Open for Global Engineering Roles");
-        p.setAvailabilityStatus("AVAILABLE FOR FULL-TIME / CONTRACT ROLES");
+        p.setLocation("Padukka, Sri Lanka | Remote / Relocation | Open for Global Roles");
+        p.setAvailabilityStatus("AVAILABLE FOR SOFTWARE ENGINEERING ROLES");
         p.setGithubUrl("https://github.com/Hansanie22");
         p.setLinkedinUrl("https://linkedin.com/in/hansanie-prabodha");
         p.setEmail("hansanieprabodha@gmail.com");
-        p.setSummary("High-performing Systems Engineer specializing in Enterprise Java (Spring Boot 3), Native Mobile Architecture (Java 11/Android Jetpack), and Cloud Automation. Backed by 10+ High Distinctions in UK Level 4 & Level 5 Software Engineering qualifications and verified production deployments handling real-time POS, ERP Webhooks, and Sensor-driven hardware pipelines.");
+        p.setSummary("Software Engineering undergraduate specializing in Java (Spring Boot 3), React, Native Android (Java/MVVM), and Cloud Automation. Backed by high academic distinctions in UK Level 4 & Level 5 qualifications and hands-on experience architecting real-world POS, ERP Webhooks, and Sensor-driven mobile applications.");
 
         p.setStrategicHighlights(Arrays.asList(
-                "Enterprise Java 17 & Spring Boot 3 microservices with JWT, JPA, Cron Schedulers & Webhooks",
-                "Native Android MVVM architect with Room DB, WorkManager, Hardware Sensors & FCM",
-                "10+ High Distinctions in UK Level 4 & 5 Software Engineering (OOP, SAD, Testing & QA, Architecture)",
-                "Full Docker Containerization & Cloud Deployment on Render, TiDB Cloud, and Cloudinary",
+                "Java 17 & Spring Boot 3 REST APIs, Spring Security, JPA & Docker containerization",
+                "Native Android MVVM architecture with Room DB, WorkManager & Hardware Sensors",
+                "10+ High Distinctions in UK Level 4 & 5 Software Engineering (OOP, SAD, Testing & QA)",
+                "Full-stack web engineering with React, JavaScript, and responsive UI design",
                 "Sub-50ms Point-of-Sale transaction processing & Automated Bill-of-Materials ERP sync engines"
         ));
 
         p.setKeyMetrics(Arrays.asList(
                 "10+ UK High Distinctions",
-                "3 Production-Grade Deployments",
+                "3 Production-Grade Systems",
                 "100% Offline-First Mobile Sync",
                 "<50ms POS Barcode Latency",
                 "Zero-Loss Cloud Webhooks"
