@@ -1,22 +1,22 @@
-# Kalatuwawage Hansanie Prabodha — Enterprise Engineering Portfolio
+# Kalatuwawage Hansanie Prabodha — Software Engineering Portfolio
 
-> **Full-Stack Systems Engineer | Native Mobile & Enterprise Java Architect**  
+> **Full-Stack & Mobile Software Engineer**  
 > BSc (Hons) Undergraduate · UK Level 4 & Level 5 — 10+ High Distinctions  
-> Padukka, Sri Lanka · Open for Remote / Relocation · Global Engineering Roles
+> Padukka, Sri Lanka · Open for Remote / Relocation · Software Engineering Roles
 
-[![Live Portfolio](https://img.shields.io/badge/🚀_Live_Portfolio-Portfolio_URL-00f2fe?style=for-the-badge)](https://hansanie-portfolio.onrender.com)
-[![Swagger API](https://img.shields.io/badge/📄_Swagger_API_Docs-OpenAPI_3-10b981?style=for-the-badge)](https://hansanie-portfolio.onrender.com/swagger-ui.html)
+[![Live Portfolio](https://img.shields.io/badge/🚀_Live_Portfolio-Portfolio_URL-0284c7?style=for-the-badge)](https://hansanie-portfolio.onrender.com)
 [![GitHub](https://img.shields.io/badge/GitHub-Hansanie22-white?style=for-the-badge&logo=github)](https://github.com/Hansanie22)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Hansanie_Prabodha-0a66c2?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/hansanie-prabodha)
 
 ---
 
-## 🏆 3 Production Client Systems (Not Tutorial Apps)
+## 🏆 Featured Engineering Projects
 
-| # | System | Live URL | Tech |
-|---|--------|----------|------|
-| 1 | **VELORA / Rush Jewels** — Enterprise Fine Jewellery POS & E-Commerce | [rushjewels.com](https://www.rushjewels.com) | Java 17, Spring Boot 3, Docker, TiDB |
-| 2 | **AuraCraft / Ceylon Letter Co** — Bespoke Keepsakes ERP & Automation Suite | [ceylonletterco.com](https://www.ceylonletterco.com) | Java 17, Spring Boot 3, Webhooks, Cron |
-| 3 | **GREEN CART** — Native Android Grocery & Subscription Platform | [Live Showcase](https://hansanie22.github.io/greencart-android-portfolio/) | Android Java 11, MVVM, Room DB, WorkManager |
+| # | Project | Live Demo | Tech Stack |
+|---|---------|-----------|------------|
+| 1 | **VELORA / Rush Jewels** — Retail POS & Fine Jewellery Suite | [rushjewels.com](https://www.rushjewels.com) | Java 17, Spring Boot 3, React, Docker, TiDB |
+| 2 | **GREEN CART** — Native Android Grocery & Subscription Platform | [Live Showcase](https://hansanie22.github.io/greencart-android-portfolio/) | Android Java, MVVM, Room DB, Sensor API, WorkManager |
+| 3 | **AuraCraft / Ceylon Letter Co** — Manufacturing ERP & Automation Suite | [ceylonletterco.com](https://www.ceylonletterco.com) | Java 17, Spring Boot 3, Cloud Webhooks, Cron Schedulers |
 
 ---
 
