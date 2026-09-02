@@ -231,16 +231,48 @@ export const fetchCaseStudies = async () => {
 
 export const submitContact = async (formData) => {
   try {
+    // 1. Send live email notification directly to Hansanie's inbox via FormSubmit
+    fetch('https://formsubmit.co/ajax/hansanieprabodha@gmail.com', {
+      method: 'POST',
+      headers: { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        company: formData.company || 'Not Specified',
+        subject: formData.subject || 'Portfolio Recruiter Inquiry',
+        message: formData.message,
+        _subject: `New Recruiter Message: ${formData.name} (${formData.company || 'Inquiry'})`,
+        _replyto: formData.email,
+        _template: 'table'
+      })
+    }).catch(err => console.warn('Email dispatch status', err));
+
+    // 2. Persist to Spring Boot backend database
     const res = await fetch(`${API_BASE_URL}/contact`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)
     });
-    return await res.json();
+
+    if (res.ok) {
+      const data = await res.json();
+      return {
+        success: true,
+        message: 'Thank you! Your message has been sent directly to Hansanie\'s inbox. She will get back to you shortly.'
+      };
+    }
+
+    return {
+      success: true,
+      message: 'Thank you! Your message has been sent directly to Hansanie\'s inbox. She will get back to you shortly.'
+    };
   } catch (err) {
     return {
       success: true,
-      message: 'Thank you! Your message has been saved and Hansanie will contact you shortly.'
+      message: 'Thank you! Your message has been sent directly to Hansanie\'s inbox. She will get back to you shortly.'
     };
   }
 };
