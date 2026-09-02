@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, FileText, Mail, Github, Linkedin, ShieldCheck, Sparkles, Code, Smartphone, Server, Award } from 'lucide-react';
+import { ArrowRight, FileText, Github, Linkedin } from 'lucide-react';
 import { recordAnalyticsEvent } from '../services/api';
 
 export default function Hero({ profile, onOpenResume }) {
@@ -10,135 +10,207 @@ export default function Hero({ profile, onOpenResume }) {
   };
 
   return (
-    <section id="hero" style={{ paddingTop: '130px', paddingBottom: '70px', position: 'relative' }}>
+    <section id="hero" style={{ paddingTop: '140px', paddingBottom: '96px', position: 'relative' }}>
       <div className="container">
-        
-        {/* Availability Badge */}
-        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
-          <div className="badge badge-emerald" style={{ padding: '6px 16px', gap: '8px' }}>
-            <span className="status-indicator"></span>
-            <span>Available for Software Engineering Roles • Remote / Relocation</span>
-          </div>
-        </div>
 
-        {/* Main Headline */}
-        <div style={{ textAlign: 'center', maxWidth: '900px', margin: '0 auto' }}>
-          <div style={{ fontSize: '1rem', fontWeight: '600', color: 'var(--color-brand)', marginBottom: '10px' }}>
-            Hello, I'm
-          </div>
-
-          <h1 style={{ fontSize: 'clamp(2.4rem, 5vw, 3.8rem)', fontWeight: '800', lineHeight: 1.15, letterSpacing: '-0.03em', marginBottom: '18px', color: '#fff' }}>
-            Kalatuwawage <span className="gradient-text">Hansanie Prabodha</span>
-          </h1>
-
-          <div style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.4rem)', color: '#e2e8f0', fontWeight: '600', marginBottom: '20px' }}>
-            Full-Stack & Mobile Software Engineer
-          </div>
-
-          <p style={{ fontSize: '1.05rem', color: 'var(--text-secondary)', maxWidth: '720px', margin: '0 auto 32px', lineHeight: 1.65 }}>
-            BSc (Hons) Software Engineering undergraduate backed by <strong style={{ color: '#fbbf24' }}>10+ High Distinctions</strong> in UK Level 4 & 5 credentials. 
-            Passionate about architecting high-performance <strong style={{ color: '#38bdf8' }}>Java (Spring Boot 3)</strong> backends, modern <strong style={{ color: '#818cf8' }}>React</strong> frontends, and robust <strong style={{ color: '#10b981' }}>Native Android</strong> mobile applications.
-          </p>
-
-          {/* Action CTAs */}
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '14px', flexWrap: 'wrap', marginBottom: '44px' }}>
-            <button 
-              onClick={handleScrollToProjects}
-              className="btn btn-primary btn-lg"
-            >
-              Explore Projects <ArrowRight size={18} />
-            </button>
-            
-            <button 
-              onClick={onOpenResume}
-              className="btn btn-secondary btn-lg"
-            >
-              <FileText size={18} color="#38bdf8" /> View Full Resume
-            </button>
-
-            <a 
-              href="https://linkedin.com/in/hansanie-prabodha" 
-              target="_blank" 
-              rel="noreferrer"
-              className="btn btn-secondary"
-              style={{ padding: '14px 18px' }}
-              title="LinkedIn Profile"
-            >
-              <Linkedin size={18} color="#818cf8" />
-            </a>
-
-            <a 
-              href="https://github.com/Hansanie22" 
-              target="_blank" 
-              rel="noreferrer"
-              className="btn btn-secondary"
-              style={{ padding: '14px 18px' }}
-              title="GitHub Profile"
-            >
-              <Github size={18} color="#10b981" />
-            </a>
-          </div>
-        </div>
-
-        {/* 4 Core Credibility Highlights */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-          gap: '16px',
-          marginTop: '10px'
+          gridTemplateColumns: '1fr auto',
+          gap: '72px',
+          alignItems: 'center',
         }}>
-          
-          <div className="card card-hover" style={{ padding: '20px', textAlign: 'center', background: 'var(--bg-surface)' }}>
-            <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: 'rgba(245, 158, 11, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 12px', color: '#fbbf24' }}>
-              <Award size={22} />
+
+          {/* ── Left: Text Content ─────────────────────── */}
+          <div>
+
+            {/* Availability indicator */}
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              marginBottom: '32px',
+              padding: '6px 14px',
+              border: '1px solid rgba(255,255,255,0.12)',
+              borderRadius: '9999px',
+              fontSize: '0.72rem',
+              fontWeight: '500',
+              color: 'rgba(255,255,255,0.45)',
+              letterSpacing: '0.06em',
+              textTransform: 'uppercase'
+            }}>
+              <span style={{
+                width: '6px', height: '6px', borderRadius: '50%',
+                background: '#fff',
+                display: 'inline-block',
+                boxShadow: '0 0 6px rgba(255,255,255,0.6)'
+              }} />
+              Available · Open to Roles
             </div>
-            <div style={{ fontSize: '1.25rem', fontWeight: '800', color: '#fbbf24', marginBottom: '4px' }}>
-              10+ High Distinctions
+
+            {/* Name */}
+            <h1 style={{
+              fontSize: 'clamp(2.4rem, 4.5vw, 3.6rem)',
+              fontWeight: '700',
+              lineHeight: 1.1,
+              letterSpacing: '-0.03em',
+              color: '#fff',
+              marginBottom: '6px'
+            }}>
+              Hansanie
+            </h1>
+            <h1 style={{
+              fontSize: 'clamp(2.4rem, 4.5vw, 3.6rem)',
+              fontWeight: '300',
+              lineHeight: 1.1,
+              letterSpacing: '-0.03em',
+              color: 'rgba(255,255,255,0.55)',
+              marginBottom: '24px'
+            }}>
+              Prabodha
+            </h1>
+
+            {/* Role */}
+            <div style={{
+              fontSize: '1rem',
+              fontWeight: '400',
+              color: 'rgba(255,255,255,0.50)',
+              marginBottom: '24px',
+              letterSpacing: '0.01em'
+            }}>
+              Full-Stack &amp; Mobile Software Engineer
             </div>
-            <div style={{ fontSize: '0.84rem', color: 'var(--text-secondary)' }}>
-              UK Level 4 & 5 (OOP, SAD, Testing & QA)
+
+            {/* Bio */}
+            <p style={{
+              fontSize: '0.95rem',
+              color: 'rgba(255,255,255,0.40)',
+              lineHeight: 1.75,
+              maxWidth: '520px',
+              marginBottom: '40px',
+              fontWeight: '300'
+            }}>
+              BSc (Hons) Software Engineering undergraduate with 10+ High Distinctions
+              in UK Level 4 &amp; 5 credentials. Building production-grade Java, React,
+              and Native Android systems.
+            </p>
+
+            {/* CTAs */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap', marginBottom: '56px' }}>
+              <button onClick={handleScrollToProjects} className="btn btn-primary btn-lg">
+                View Projects <ArrowRight size={16} />
+              </button>
+              <button onClick={onOpenResume} className="btn btn-secondary btn-lg">
+                <FileText size={15} /> Resume
+              </button>
+              <a
+                href="https://linkedin.com/in/hansanie-prabodha"
+                target="_blank" rel="noreferrer"
+                className="btn btn-ghost"
+                style={{ padding: '13px 14px' }}
+                title="LinkedIn"
+              >
+                <Linkedin size={17} />
+              </a>
+              <a
+                href="https://github.com/Hansanie22"
+                target="_blank" rel="noreferrer"
+                className="btn btn-ghost"
+                style={{ padding: '13px 14px' }}
+                title="GitHub"
+              >
+                <Github size={17} />
+              </a>
+            </div>
+
+            {/* Stats Row */}
+            <div style={{
+              display: 'flex',
+              gap: '40px',
+              paddingTop: '28px',
+              borderTop: '1px solid rgba(255,255,255,0.08)'
+            }}>
+              {[
+                { num: '10+', label: 'High Distinctions' },
+                { num: '3',   label: 'Production Systems' },
+                { num: '<50ms', label: 'POS Latency' },
+              ].map((stat, i) => (
+                <div key={i}>
+                  <div style={{ fontSize: '1.4rem', fontWeight: '600', color: '#fff', letterSpacing: '-0.02em' }}>
+                    {stat.num}
+                  </div>
+                  <div style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.30)', fontWeight: '400', marginTop: '2px' }}>
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
-          <div className="card card-hover" style={{ padding: '20px', textAlign: 'center', background: 'var(--bg-surface)' }}>
-            <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: 'rgba(56, 189, 248, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 12px', color: '#38bdf8' }}>
-              <Server size={22} />
-            </div>
-            <div style={{ fontSize: '1.25rem', fontWeight: '800', color: '#38bdf8', marginBottom: '4px' }}>
-              Spring Boot 3 & React
-            </div>
-            <div style={{ fontSize: '0.84rem', color: 'var(--text-secondary)' }}>
-              Layered REST APIs, JPA & Modern Web
-            </div>
-          </div>
+          {/* ── Right: Profile Photo ───────────────────── */}
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexShrink: 0
+          }}>
+            <div style={{
+              position: 'relative',
+              width: '300px',
+              height: '300px',
+            }}>
+              {/* Outer glow ring */}
+              <div style={{
+                position: 'absolute',
+                inset: '-2px',
+                borderRadius: '50%',
+                background: 'conic-gradient(from 0deg, rgba(255,255,255,0.15), rgba(255,255,255,0.03), rgba(255,255,255,0.15))',
+                animation: 'rotateBorder 8s linear infinite'
+              }} />
+              <style>{`
+                @keyframes rotateBorder {
+                  from { transform: rotate(0deg); }
+                  to   { transform: rotate(360deg); }
+                }
+              `}</style>
 
-          <div className="card card-hover" style={{ padding: '20px', textAlign: 'center', background: 'var(--bg-surface)' }}>
-            <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: 'rgba(16, 185, 129, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 12px', color: '#10b981' }}>
-              <Smartphone size={22} />
-            </div>
-            <div style={{ fontSize: '1.25rem', fontWeight: '800', color: '#10b981', marginBottom: '4px' }}>
-              Native Android MVVM
-            </div>
-            <div style={{ fontSize: '0.84rem', color: 'var(--text-secondary)' }}>
-              Room SQLite, Sensors & WorkManager
-            </div>
-          </div>
-
-          <div className="card card-hover" style={{ padding: '20px', textAlign: 'center', background: 'var(--bg-surface)' }}>
-            <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: 'rgba(99, 102, 241, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 12px', color: '#818cf8' }}>
-              <Code size={22} />
-            </div>
-            <div style={{ fontSize: '1.25rem', fontWeight: '800', color: '#818cf8', marginBottom: '4px' }}>
-              Production Deployed
-            </div>
-            <div style={{ fontSize: '0.84rem', color: 'var(--text-secondary)' }}>
-              Docker Containerized & Render Cloud Live
+              {/* Photo */}
+              <img
+                src="/hansanie-photo.jpg"
+                alt="Hansanie Prabodha — Software Engineer"
+                style={{
+                  position: 'absolute',
+                  inset: '3px',
+                  width: 'calc(100% - 6px)',
+                  height: 'calc(100% - 6px)',
+                  borderRadius: '50%',
+                  objectFit: 'cover',
+                  objectPosition: 'center top',
+                  display: 'block',
+                  filter: 'grayscale(15%) contrast(1.05)'
+                }}
+              />
             </div>
           </div>
 
         </div>
-
       </div>
+
+      {/* Responsive: stack on mobile */}
+      <style>{`
+        @media (max-width: 768px) {
+          #hero .container > div {
+            grid-template-columns: 1fr !important;
+            gap: 40px !important;
+          }
+          #hero .container > div > div:last-child {
+            order: -1;
+          }
+          #hero .container > div > div:last-child > div {
+            width: 200px !important;
+            height: 200px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

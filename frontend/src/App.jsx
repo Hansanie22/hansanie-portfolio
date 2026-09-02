@@ -44,27 +44,21 @@ function App() {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: '16px',
-        background: '#090d16',
-        color: '#fff'
+        gap: '20px',
+        background: '#050505',
       }}>
+        {/* Minimal spinner */}
         <div style={{
-          width: '50px',
-          height: '50px',
-          borderRadius: '12px',
-          background: 'linear-gradient(135deg, #0284c7, #6366f1)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontSize: '1.4rem',
-          fontWeight: '800',
-          color: '#fff',
-          boxShadow: '0 4px 20px rgba(56, 189, 248, 0.35)'
-        }}>
-          HP
-        </div>
-        <div style={{ fontSize: '0.95rem', color: '#94a3b8', fontWeight: '500' }}>
-          Loading Portfolio...
+          width: '36px',
+          height: '36px',
+          borderRadius: '50%',
+          border: '2px solid rgba(255,255,255,0.08)',
+          borderTopColor: 'rgba(255,255,255,0.7)',
+          animation: 'spin 0.8s linear infinite'
+        }} />
+        <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+        <div style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.3)', fontFamily: 'Poppins, sans-serif', fontWeight: '400', letterSpacing: '0.06em' }}>
+          Loading...
         </div>
       </div>
     );

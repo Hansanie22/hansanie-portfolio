@@ -1,98 +1,81 @@
 import React from 'react';
-import { Award, CheckCircle2, GraduationCap, Star, BookOpen } from 'lucide-react';
 
 export default function AcademicTranscripts({ qualifications }) {
   return (
-    <section id="education" className="section">
+    <section id="education" className="section" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
       <div className="container">
-        
+
         <div className="section-header">
-          <div className="badge badge-amber">
-            <GraduationCap size={13} /> Academic Foundation
-          </div>
-          <h2 className="section-title">
-            Education & <span className="gradient-text">Academic Distinctions</span>
-          </h2>
+          <div className="section-eyebrow">Education</div>
+          <h2 className="section-title">Academic Background</h2>
           <p className="section-subtitle">
-            Rigorous software engineering curriculum from UK awarding bodies backed by 10+ High Distinctions in Object-Oriented Design, SAD, Software Testing & Mobile Programming.
+            UK-accredited software engineering credentials with 10+ High Distinctions.
           </p>
         </div>
 
-        {/* Qualifications Cards */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
           {qualifications && qualifications.map((q, index) => (
-            <div 
+            <div
               key={q.id || index}
-              className="card card-hover"
               style={{
-                padding: '28px',
-                background: 'var(--bg-surface)',
-                borderRadius: '18px'
+                padding: '32px 0',
+                borderBottom: index < qualifications.length - 1 ? '1px solid rgba(255,255,255,0.07)' : 'none',
+                display: 'grid',
+                gridTemplateColumns: '1fr auto',
+                gap: '24px',
+                alignItems: 'start'
               }}
             >
-              {/* Header Info */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '14px', marginBottom: '16px' }}>
-                <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
-                    <span className="badge badge-amber">
-                      <Star size={12} fill="#fbbf24" /> {q.overallGrade}
-                    </span>
-                    <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)' }}>
-                      {q.completionDate}
-                    </span>
-                  </div>
-                  
-                  <h3 style={{ fontSize: '1.3rem', fontWeight: '800', color: '#fff' }}>
-                    {q.title}
-                  </h3>
-                  
-                  <div style={{ fontSize: '0.88rem', color: 'var(--color-brand)', fontWeight: '600' }}>
-                    {q.awardingBody}
-                  </div>
-                </div>
-
-                <div style={{ textAlign: 'right' }}>
-                  <div style={{ fontSize: '1.5rem', fontWeight: '800', color: '#fbbf24' }}>
-                    {q.distinctionCount} Distinctions
-                  </div>
-                  <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>
-                    Verified Modules
-                  </div>
-                </div>
-              </div>
-
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', marginBottom: '18px', lineHeight: 1.6 }}>
-                {q.description}
-              </p>
-
-              {/* Module Distinction Pills */}
+              {/* Left */}
               <div>
-                <div style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '8px' }}>
-                  Distinction Modules:
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+                  <span style={{
+                    fontSize: '0.65rem',
+                    color: 'rgba(255,255,255,0.25)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.09em',
+                    fontWeight: '600'
+                  }}>
+                    {q.level}
+                  </span>
+                  <span style={{ color: 'rgba(255,255,255,0.12)', fontSize: '0.65rem' }}>·</span>
+                  <span style={{ fontSize: '0.68rem', color: 'rgba(255,255,255,0.18)' }}>{q.completionDate}</span>
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '8px' }}>
-                  {q.distinctionModules && q.distinctionModules.map((mod, mIdx) => (
-                    <div 
-                      key={mIdx}
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '8px',
-                        background: 'rgba(255, 255, 255, 0.02)',
-                        border: '1px solid var(--border-subtle)',
-                        padding: '8px 12px',
-                        borderRadius: '8px'
-                      }}
-                    >
-                      <CheckCircle2 size={14} color="#fbbf24" style={{ flexShrink: 0 }} />
-                      <span style={{ fontSize: '0.82rem', color: 'var(--text-primary)', fontWeight: '500' }}>
-                        {mod}
+
+                <h3 style={{ fontSize: '1.1rem', fontWeight: '600', color: '#fff', marginBottom: '4px', letterSpacing: '-0.01em' }}>
+                  {q.title}
+                </h3>
+                <div style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.35)', marginBottom: '16px', fontWeight: '300' }}>
+                  {q.awardingBody}
+                </div>
+                <p style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.30)', lineHeight: 1.7, marginBottom: '18px', fontWeight: '300', maxWidth: '560px' }}>
+                  {q.description}
+                </p>
+
+                {/* Distinction Modules */}
+                {q.distinctionModules && q.distinctionModules.length > 0 && (
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                    {q.distinctionModules.map((mod, mi) => (
+                      <span key={mi} className="pill" style={{ fontSize: '0.70rem' }}>
+                        {mod.replace(' (High Distinction)', '').replace(' (Distinction)', '')}
                       </span>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
+                )}
               </div>
 
+              {/* Right — Grade */}
+              <div style={{ textAlign: 'right', flexShrink: 0 }}>
+                <div style={{ fontSize: '2rem', fontWeight: '700', color: '#fff', letterSpacing: '-0.04em', lineHeight: 1 }}>
+                  {q.distinctionCount}
+                </div>
+                <div style={{ fontSize: '0.68rem', color: 'rgba(255,255,255,0.25)', textTransform: 'uppercase', letterSpacing: '0.07em', marginTop: '4px' }}>
+                  Distinctions
+                </div>
+                <div style={{ marginTop: '10px', fontSize: '0.70rem', color: 'rgba(255,255,255,0.30)', fontStyle: 'italic' }}>
+                  {q.overallGrade}
+                </div>
+              </div>
             </div>
           ))}
         </div>

@@ -1,134 +1,68 @@
 import React from 'react';
-import { Code, Server, Smartphone, Database, Wrench, CheckCircle2, Layers } from 'lucide-react';
 
 export default function SkillsSection() {
-  const skillCategories = [
+  const categories = [
     {
-      title: 'Backend & APIs',
-      icon: <Server size={20} color="#38bdf8" />,
-      color: '#38bdf8',
-      skills: [
-        'Java 17 / Java 11',
-        'Spring Boot 3.3',
-        'RESTful API Design',
-        'Spring Data JPA / Hibernate',
-        'Spring Security & JWT',
-        'Cron Schedulers & Webhooks',
-        'Layered Architecture (DTO/Service)'
-      ]
+      label: 'Backend & APIs',
+      skills: ['Java 17 / Java 11', 'Spring Boot 3.3', 'RESTful API Design', 'Spring Data JPA / Hibernate', 'Spring Security & JWT', 'Cron Schedulers & Webhooks']
     },
     {
-      title: 'Frontend Development',
-      icon: <Code size={20} color="#818cf8" />,
-      color: '#818cf8',
-      skills: [
-        'React.js',
-        'JavaScript (ES6+)',
-        'HTML5 & CSS3',
-        'Vite & Build Tools',
-        'Responsive Design / UI/UX',
-        'Fetch & REST Integration',
-        'Component Architecture'
-      ]
+      label: 'Frontend',
+      skills: ['React.js', 'JavaScript (ES6+)', 'HTML5 & CSS3', 'Vite & Build Tools', 'Responsive Design', 'Component Architecture']
     },
     {
-      title: 'Native Mobile',
-      icon: <Smartphone size={20} color="#10b981" />,
-      color: '#10b981',
-      skills: [
-        'Android SDK (Java)',
-        'Google MVVM Pattern',
-        'Jetpack Room SQLite DB',
-        'Android WorkManager',
-        'Hardware Accelerometer Sensor',
-        'Firebase Cloud Messaging',
-        'Google Maps API'
-      ]
+      label: 'Native Mobile',
+      skills: ['Android SDK (Java)', 'Google MVVM Pattern', 'Jetpack Room SQLite', 'Android WorkManager', 'Hardware Accelerometer', 'Firebase Cloud Messaging']
     },
     {
-      title: 'Databases & Cloud',
-      icon: <Database size={20} color="#fbbf24" />,
-      color: '#fbbf24',
-      skills: [
-        'MySQL & PostgreSQL',
-        'TiDB Cloud (Distributed SQL)',
-        'H2 In-Memory DB',
-        'Docker Containerization',
-        'Render Cloud Deployment',
-        'Cloudinary CDN Integration'
-      ]
+      label: 'Databases & Cloud',
+      skills: ['MySQL & PostgreSQL', 'TiDB Cloud', 'Docker Containerization', 'Render Cloud', 'Cloudinary CDN', 'H2 In-Memory DB']
     },
     {
-      title: 'Engineering Tools & QA',
-      icon: <Wrench size={20} color="#f43f5e" />,
-      color: '#f43f5e',
-      skills: [
-        'Git & GitHub Version Control',
-        'Maven Build Lifecycle',
-        'Postman & API Testing',
-        'Swagger / OpenAPI 3 Docs',
-        'Software Testing & QA (Unit/Integration)',
-        'Agile / Scrum Methodologies'
-      ]
+      label: 'Tools & QA',
+      skills: ['Git & GitHub', 'Maven Build', 'Postman & API Testing', 'Swagger / OpenAPI 3', 'Unit & Integration Testing', 'Agile / Scrum']
     }
   ];
 
   return (
-    <section id="skills" className="section" style={{ background: 'rgba(255, 255, 255, 0.01)' }}>
+    <section id="skills" className="section" style={{ background: 'var(--bg-surface)', borderTop: '1px solid rgba(255,255,255,0.06)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
       <div className="container">
-        
+
         <div className="section-header">
-          <div className="badge badge-brand">
-            <Layers size={13} /> Technical Stack
-          </div>
-          <h2 className="section-title">
-            Skills & <span className="gradient-text">Proficiencies</span>
-          </h2>
+          <div className="section-eyebrow">Stack</div>
+          <h2 className="section-title">Skills &amp; Proficiencies</h2>
           <p className="section-subtitle">
-            A comprehensive overview of the programming languages, enterprise frameworks, mobile SDKs, and cloud tools I use daily.
+            Languages, frameworks, SDKs, and cloud tools used in production systems.
           </p>
         </div>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(270px, 1fr))',
-          gap: '20px'
-        }}>
-          {skillCategories.map((cat, idx) => (
-            <div 
-              key={idx}
-              className="card card-hover"
-              style={{
-                padding: '24px',
-                background: 'var(--bg-surface)',
-                display: 'flex',
-                flexDirection: 'column',
-                borderTop: `3px solid ${cat.color}`
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '18px' }}>
-                <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: `${cat.color}15`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  {cat.icon}
-                </div>
-                <h3 style={{ fontSize: '1.05rem', fontWeight: '700', color: '#fff' }}>
-                  {cat.title}
-                </h3>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '40px' }}>
+          {categories.map((cat, i) => (
+            <div key={i}>
+              <div style={{
+                fontSize: '0.68rem',
+                fontWeight: '600',
+                color: 'rgba(255,255,255,0.25)',
+                letterSpacing: '0.10em',
+                textTransform: 'uppercase',
+                marginBottom: '16px',
+                paddingBottom: '10px',
+                borderBottom: '1px solid rgba(255,255,255,0.07)'
+              }}>
+                {cat.label}
               </div>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                {cat.skills.map((skill, sIdx) => (
-                  <div 
-                    key={sIdx}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      fontSize: '0.86rem',
-                      color: 'var(--text-secondary)'
-                    }}
-                  >
-                    <CheckCircle2 size={14} color={cat.color} style={{ flexShrink: 0 }} />
-                    <span>{skill}</span>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '9px' }}>
+                {cat.skills.map((skill, j) => (
+                  <div key={j} style={{
+                    fontSize: '0.84rem',
+                    color: 'rgba(255,255,255,0.50)',
+                    fontWeight: '300',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px'
+                  }}>
+                    <span style={{ width: '4px', height: '4px', borderRadius: '50%', background: 'rgba(255,255,255,0.20)', flexShrink: 0 }} />
+                    {skill}
                   </div>
                 ))}
               </div>

@@ -1,11 +1,151 @@
-import React, { useState } from 'react';
-import { ExternalLink, Github, Copy, Check, Layers, ShieldCheck, Activity, X, Smartphone, Server, Database } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { ExternalLink, Github, Play, X, Layers, Copy, Check } from 'lucide-react';
 import { recordAnalyticsEvent } from '../services/api';
 
+// Video modal component
+function VideoModal({ project, onClose }) {
+  const videoSrc = project.videoUrl || null;
+
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          width: '100%',
+          maxWidth: '860px',
+          background: '#0a0a0a',
+          border: '1px solid rgba(255,255,255,0.12)',
+          borderRadius: '20px',
+          overflow: 'hidden',
+        }}
+      >
+        {/* Header */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '18px 24px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+          <div>
+            <div style={{ fontSize: '0.68rem', color: 'rgba(255,255,255,0.30)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '3px' }}>Project Demo</div>
+            <div style={{ fontSize: '0.95rem', fontWeight: '500', color: '#fff' }}>{project.title?.replace(/^[A-Z\s]+—\s*/, '')}</div>
+          </div>
+          <button onClick={onClose} style={{ background: 'transparent', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '8px', color: 'rgba(255,255,255,0.50)', cursor: 'pointer', padding: '8px' }}>
+            <X size={16} />
+          </button>
+        </div>
+
+        {/* Video Area */}
+        <div style={{ aspectRatio: '16/9', background: '#000', position: 'relative' }}>
+          {videoSrc ? (
+            <video
+              src={videoSrc}
+              controls
+              autoPlay
+              style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
+            />
+          ) : (
+            /* No video: show a live demo button */
+            <div style={{
+              position: 'absolute', inset: 0,
+              display: 'flex', flexDirection: 'column',
+              alignItems: 'center', justifyContent: 'center', gap: '20px',
+              background: '#060606'
+            }}>
+              <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.25)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                Live Demo Available
+              </div>
+              <a
+                href={project.liveDemoUrl}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => recordAnalyticsEvent('PROJECT_DEMO_CLICK', project.code)}
+                className="btn btn-primary"
+                style={{ gap: '10px' }}
+              >
+                <ExternalLink size={16} />
+                Open Live Demo
+              </a>
+              <div style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.18)' }}>
+                Place project video at <code style={{ fontFamily: 'monospace' }}>/public/videos/{project.code}.mp4</code> to embed here
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Footer actions */}
+        <div style={{ display: 'flex', gap: '10px', padding: '16px 24px', borderTop: '1px solid rgba(255,255,255,0.07)', justifyContent: 'flex-end' }}>
+          <a href={project.githubUrl} target="_blank" rel="noreferrer" className="btn btn-secondary btn-sm">
+            <Github size={13} /> GitHub
+          </a>
+          <a href={project.liveDemoUrl} target="_blank" rel="noreferrer" className="btn btn-primary btn-sm"
+            onClick={() => recordAnalyticsEvent('PROJECT_DEMO_CLICK', project.code)}>
+            <ExternalLink size={13} /> Live Demo
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Architecture modal
+function ArchModal({ project, onClose }) {
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          maxWidth: '720px', width: '100%', maxHeight: '85vh', overflowY: 'auto',
+          background: '#0a0a0a',
+          border: '1px solid rgba(255,255,255,0.12)',
+          borderRadius: '20px',
+          padding: '28px'
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
+          <div>
+            <div style={{ fontSize: '0.68rem', color: 'rgba(255,255,255,0.25)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '4px' }}>Architecture</div>
+            <h3 style={{ fontSize: '1.1rem', color: '#fff', fontWeight: '500' }}>{project.title?.replace(/^[A-Z\s]+—\s*/, '')}</h3>
+          </div>
+          <button onClick={onClose} style={{ background: 'transparent', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '8px', color: 'rgba(255,255,255,0.50)', cursor: 'pointer', padding: '8px' }}>
+            <X size={16} />
+          </button>
+        </div>
+
+        <div style={{ marginBottom: '20px' }}>
+          <div style={{ fontSize: '0.70rem', color: 'rgba(255,255,255,0.25)', textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: '10px' }}>Dataflow Pipeline</div>
+          <div style={{
+            fontFamily: 'monospace',
+            fontSize: '0.82rem',
+            lineHeight: 1.7,
+            color: 'rgba(255,255,255,0.55)',
+            background: '#060606',
+            border: '1px solid rgba(255,255,255,0.07)',
+            borderRadius: '10px',
+            padding: '16px',
+            whiteSpace: 'pre-wrap'
+          }}>
+            {project.systemArchitectureFlow}
+          </div>
+        </div>
+
+        <div>
+          <div style={{ fontSize: '0.70rem', color: 'rgba(255,255,255,0.25)', textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: '8px' }}>Architectural Decisions</div>
+          <p style={{ fontSize: '0.86rem', color: 'rgba(255,255,255,0.45)', lineHeight: 1.7, fontWeight: '300' }}>
+            {project.architecturalHighlights}
+          </p>
+        </div>
+
+        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', marginTop: '24px', paddingTop: '16px', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+          <a href={project.githubUrl} target="_blank" rel="noreferrer" className="btn btn-secondary btn-sm">
+            <Github size={13} /> GitHub
+          </a>
+          <button onClick={onClose} className="btn btn-primary btn-sm">Close</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function ProjectsSection({ projects }) {
-  const [filter, setFilter] = useState('all');
-  const [selectedArchProject, setSelectedArchProject] = useState(null);
-  const [copiedKey, setCopiedKey] = useState('');
+  const [videoProject, setVideoProject] = useState(null);
+  const [archProject, setArchProject]   = useState(null);
+  const [copiedKey, setCopiedKey]       = useState('');
 
   const copyToClipboard = (text, key) => {
     navigator.clipboard.writeText(text);
@@ -14,333 +154,237 @@ export default function ProjectsSection({ projects }) {
     setTimeout(() => setCopiedKey(''), 2500);
   };
 
-  const handleDemoClick = (projectCode, url) => {
-    recordAnalyticsEvent('PROJECT_DEMO_CLICK', projectCode);
-    window.open(url, '_blank');
-  };
+  // Attach video URL if local file exists
+  const withVideoUrl = (proj) => ({
+    ...proj,
+    videoUrl: proj.videoUrl || null, // User can add /public/videos/{code}.mp4
+  });
 
-  const filteredProjects = projects ? projects.filter(p => {
-    if (filter === 'all') return true;
-    if (filter === 'mobile') return p.code === 'greencart';
-    if (filter === 'fullstack') return p.code === 'velora-pos';
-    if (filter === 'cloud') return p.code === 'auracraft-erp';
-    return true;
-  }) : [];
+  const displayProjects = projects ? projects.map(withVideoUrl) : [];
 
   return (
-    <section id="projects" className="section">
+    <section id="projects" className="section" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
       <div className="container">
-        
+
         <div className="section-header">
-          <div className="badge badge-emerald">
-            <Activity size={13} /> Featured Portfolio
-          </div>
-          <h2 className="section-title">
-            Featured <span className="gradient-text">Engineering Projects</span>
-          </h2>
+          <div className="section-eyebrow">Work</div>
+          <h2 className="section-title">Featured Projects</h2>
           <p className="section-subtitle">
-            Real-world systems built with enterprise standards: clean layered architecture, low-latency transaction processing, native mobile hardware integrations, and live cloud deployments.
+            Production-grade systems built with enterprise standards and live cloud deployments.
           </p>
         </div>
 
-        {/* Filter Tabs */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', flexWrap: 'wrap', marginBottom: '36px' }}>
-          {[
-            { id: 'all', label: 'All Projects' },
-            { id: 'fullstack', label: 'Enterprise POS (Full-Stack)' },
-            { id: 'mobile', label: 'Native Mobile (Android)' },
-            { id: 'cloud', label: 'Cloud ERP & Automation' }
-          ].map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setFilter(tab.id)}
-              className={`btn btn-sm ${filter === tab.id ? 'btn-primary' : 'btn-secondary'}`}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+          {displayProjects.map((proj, index) => (
+            <div
+              key={proj.id || index}
+              style={{
+                background: 'var(--bg-surface)',
+                border: '1px solid rgba(255,255,255,0.07)',
+                borderRadius: '20px',
+                overflow: 'hidden',
+                marginBottom: '16px',
+                transition: 'border-color 0.25s'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'}
+              onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)'}
             >
-              {tab.label}
-            </button>
-          ))}
-        </div>
 
-        {/* Projects Grid */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-          {filteredProjects.map((proj, index) => {
-            const isPos = proj.code === 'velora-pos';
-            const isErp = proj.code === 'auracraft-erp';
-            const isGreenCart = proj.code === 'greencart';
-
-            const accentColor = isGreenCart ? '#10b981' : isPos ? '#38bdf8' : '#818cf8';
-            const badgeClass = isGreenCart ? 'badge-emerald' : isPos ? 'badge-brand' : 'badge-indigo';
-
-            return (
-              <div 
-                key={proj.id || index}
-                className="card card-hover"
+              {/* ── Video / Preview Area ───────────────────── */}
+              <div
+                onClick={() => setVideoProject(proj)}
                 style={{
-                  padding: '32px',
-                  background: 'var(--bg-surface)',
-                  borderRadius: '20px',
-                  borderLeft: `4px solid ${accentColor}`,
-                  position: 'relative'
+                  position: 'relative',
+                  height: '200px',
+                  background: '#060606',
+                  cursor: 'pointer',
+                  overflow: 'hidden',
+                  borderBottom: '1px solid rgba(255,255,255,0.06)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                 }}
               >
-                {/* Header Row */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '16px', marginBottom: '20px' }}>
+                {/* Subtle grid background */}
+                <div style={{
+                  position: 'absolute', inset: 0,
+                  backgroundImage: 'linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)',
+                  backgroundSize: '40px 40px',
+                }} />
+
+                {/* Project index */}
+                <div style={{
+                  position: 'absolute', top: '18px', left: '22px',
+                  fontSize: '0.65rem', color: 'rgba(255,255,255,0.18)',
+                  letterSpacing: '0.08em', textTransform: 'uppercase', fontWeight: '500'
+                }}>
+                  {String(index + 1).padStart(2, '0')}
+                </div>
+
+                {/* Category pill */}
+                <div style={{
+                  position: 'absolute', top: '16px', right: '18px',
+                }}>
+                  <span className="pill">{proj.category?.split('&')[0]?.trim()}</span>
+                </div>
+
+                {/* Play button */}
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '12px',
+                  zIndex: 1
+                }}>
+                  <div style={{
+                    width: '52px', height: '52px',
+                    borderRadius: '50%',
+                    border: '1.5px solid rgba(255,255,255,0.25)',
+                    background: 'rgba(255,255,255,0.06)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    backdropFilter: 'blur(8px)',
+                    transition: 'all 0.22s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'rgba(255,255,255,0.14)';
+                    e.currentTarget.style.borderColor = 'rgba(255,255,255,0.50)';
+                    e.currentTarget.style.transform = 'scale(1.08)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
+                    e.currentTarget.style.borderColor = 'rgba(255,255,255,0.25)';
+                    e.currentTarget.style.transform = 'scale(1)';
+                  }}
+                  >
+                    <Play size={18} color="#fff" style={{ marginLeft: '2px' }} />
+                  </div>
+                  <div style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.30)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                    Watch Demo
+                  </div>
+                </div>
+              </div>
+
+              {/* ── Project Body ───────────────────────────── */}
+              <div style={{ padding: '28px 28px 24px' }}>
+
+                {/* Title row */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '16px', marginBottom: '12px' }}>
                   <div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
-                      <span className={`badge ${badgeClass}`}>
-                        {proj.category}
-                      </span>
-                    </div>
-                    
-                    <h3 style={{ fontSize: '1.45rem', fontWeight: '800', color: '#fff', letterSpacing: '-0.02em' }}>
-                      {proj.title}
+                    <h3 style={{ fontSize: '1.05rem', fontWeight: '600', color: '#fff', letterSpacing: '-0.01em', lineHeight: 1.3 }}>
+                      {proj.title?.replace(/^[A-Z\s]+—\s*/, '') || proj.title}
                     </h3>
-                    
-                    <div style={{ fontSize: '0.88rem', color: accentColor, fontWeight: '600', marginTop: '4px' }}>
+                    <div style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.35)', marginTop: '4px', fontWeight: '300' }}>
                       {proj.tagLine}
                     </div>
                   </div>
 
-                  {/* Actions */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
-                    <button
-                      onClick={() => handleDemoClick(proj.code, proj.liveDemoUrl)}
-                      className="btn btn-primary btn-sm"
-                    >
-                      <ExternalLink size={14} /> Live Demo
-                    </button>
-                    
-                    <a
-                      href={proj.githubUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="btn btn-secondary btn-sm"
-                    >
-                      <Github size={14} /> GitHub Code
+                  {/* Action buttons */}
+                  <div style={{ display: 'flex', gap: '8px', flexShrink: 0 }}>
+                    <a href={proj.githubUrl} target="_blank" rel="noreferrer" className="btn btn-ghost btn-sm" style={{ padding: '7px 12px' }}>
+                      <Github size={14} />
                     </a>
-
-                    <button
-                      onClick={() => setSelectedArchProject(proj)}
-                      className="btn btn-outline btn-sm"
+                    <a
+                      href={proj.liveDemoUrl}
+                      target="_blank" rel="noreferrer"
+                      className="btn btn-secondary btn-sm"
+                      onClick={() => recordAnalyticsEvent('PROJECT_DEMO_CLICK', proj.code)}
                     >
-                      <Layers size={14} /> Architecture Blueprint
+                      <ExternalLink size={13} /> Demo
+                    </a>
+                    <button onClick={() => setArchProject(proj)} className="btn btn-ghost btn-sm" style={{ padding: '7px 12px' }}>
+                      <Layers size={14} />
                     </button>
                   </div>
                 </div>
 
-                {/* Content Grid */}
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px', marginBottom: '20px' }}>
-                  {/* Left: Overview & Key Features */}
-                  <div>
-                    <h4 style={{ fontSize: '0.82rem', color: 'var(--text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '8px' }}>
-                      System Overview
-                    </h4>
-                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.6, marginBottom: '16px' }}>
-                      {proj.overview}
-                    </p>
+                {/* Overview */}
+                <p style={{ fontSize: '0.84rem', color: 'rgba(255,255,255,0.38)', lineHeight: 1.7, marginBottom: '18px', fontWeight: '300', maxWidth: '680px' }}>
+                  {proj.overview}
+                </p>
 
-                    <h4 style={{ fontSize: '0.82rem', color: 'var(--text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '8px' }}>
-                      Key Engineering Capabilities
-                    </h4>
-                    <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                      {proj.keyFeatures && proj.keyFeatures.map((feat, fIdx) => (
-                        <li key={fIdx} style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
-                          <ShieldCheck size={15} color={accentColor} style={{ flexShrink: 0, marginTop: '3px' }} />
-                          <span>{feat}</span>
-                        </li>
+                {/* Key Features */}
+                {proj.keyFeatures && (
+                  <div style={{ marginBottom: '18px' }}>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '7px' }}>
+                      {proj.keyFeatures.slice(0, 3).map((feat, fi) => (
+                        <span key={fi} style={{
+                          fontSize: '0.74rem',
+                          color: 'rgba(255,255,255,0.40)',
+                          background: 'rgba(255,255,255,0.04)',
+                          border: '1px solid rgba(255,255,255,0.07)',
+                          padding: '4px 10px',
+                          borderRadius: '6px',
+                          fontWeight: '300'
+                        }}>
+                          {feat}
+                        </span>
                       ))}
-                    </ul>
-                  </div>
-
-                  {/* Right: Metrics & Recruiter Demo Credentials */}
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                    {/* Performance & Metrics Box */}
-                    <div style={{
-                      background: 'rgba(255, 255, 255, 0.02)',
-                      border: '1px solid var(--border-subtle)',
-                      borderRadius: '12px',
-                      padding: '16px'
-                    }}>
-                      <div style={{ fontSize: '0.78rem', color: '#fbbf24', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '4px' }}>
-                        Performance & Business Impact
-                      </div>
-                      <p style={{ color: '#e2e8f0', fontSize: '0.86rem', lineHeight: 1.5 }}>
-                        {proj.businessMetrics}
-                      </p>
                     </div>
+                  </div>
+                )}
 
-                    {/* Test Credentials for Live Demos */}
-                    {(proj.demoAdminEmail || proj.demoCashierEmail) && (
-                      <div style={{
-                        background: 'rgba(56, 189, 248, 0.04)',
-                        border: '1px solid rgba(56, 189, 248, 0.2)',
-                        borderRadius: '12px',
-                        padding: '16px'
-                      }}>
-                        <div style={{ fontSize: '0.78rem', color: 'var(--color-brand)', fontWeight: '700', textTransform: 'uppercase', marginBottom: '10px' }}>
-                          Recruiter Demo Access
-                        </div>
-
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                          {proj.demoAdminEmail && (
-                            <div style={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'space-between',
-                              background: '#070b14',
-                              padding: '8px 12px',
-                              borderRadius: '8px',
-                              border: '1px solid var(--border-subtle)'
-                            }}>
-                              <div style={{ fontSize: '0.8rem', fontFamily: 'var(--font-mono)' }}>
-                                <span style={{ color: 'var(--text-tertiary)' }}>Admin: </span>
-                                <span style={{ color: '#fff' }}>{proj.demoAdminEmail}</span>
-                                <span style={{ color: 'var(--text-tertiary)' }}> | </span>
-                                <span style={{ color: '#38bdf8' }}>{proj.demoAdminPassword}</span>
-                              </div>
-                              <button
-                                onClick={() => copyToClipboard(`${proj.demoAdminEmail} / ${proj.demoAdminPassword}`, `${proj.code}-admin`)}
-                                className="btn btn-secondary btn-sm"
-                                style={{ padding: '3px 8px', fontSize: '0.72rem' }}
-                              >
-                                {copiedKey === `${proj.code}-admin` ? <Check size={12} color="#10b981" /> : <Copy size={12} />}
-                                {copiedKey === `${proj.code}-admin` ? 'Copied' : 'Copy'}
-                              </button>
-                            </div>
-                          )}
-
-                          {proj.demoCashierEmail && (
-                            <div style={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'space-between',
-                              background: '#070b14',
-                              padding: '8px 12px',
-                              borderRadius: '8px',
-                              border: '1px solid var(--border-subtle)'
-                            }}>
-                              <div style={{ fontSize: '0.8rem', fontFamily: 'var(--font-mono)' }}>
-                                <span style={{ color: 'var(--text-tertiary)' }}>Cashier: </span>
-                                <span style={{ color: '#fff' }}>{proj.demoCashierEmail}</span>
-                                <span style={{ color: 'var(--text-tertiary)' }}> | </span>
-                                <span style={{ color: '#38bdf8' }}>{proj.demoCashierPassword}</span>
-                              </div>
-                              <button
-                                onClick={() => copyToClipboard(`${proj.demoCashierEmail} / ${proj.demoCashierPassword}`, `${proj.code}-cashier`)}
-                                className="btn btn-secondary btn-sm"
-                                style={{ padding: '3px 8px', fontSize: '0.72rem' }}
-                              >
-                                {copiedKey === `${proj.code}-cashier` ? <Check size={12} color="#10b981" /> : <Copy size={12} />}
-                                {copiedKey === `${proj.code}-cashier` ? 'Copied' : 'Copy'}
-                              </button>
-                            </div>
-                          )}
-                        </div>
+                {/* Demo Credentials (if available) */}
+                {(proj.demoAdminEmail || proj.demoCashierEmail) && (
+                  <div style={{
+                    background: 'rgba(255,255,255,0.025)',
+                    border: '1px solid rgba(255,255,255,0.07)',
+                    borderRadius: '10px',
+                    padding: '12px 14px',
+                    marginBottom: '16px',
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    gap: '10px',
+                    alignItems: 'center'
+                  }}>
+                    <span style={{ fontSize: '0.68rem', color: 'rgba(255,255,255,0.25)', textTransform: 'uppercase', letterSpacing: '0.07em', fontWeight: '500', marginRight: '4px' }}>
+                      Demo Access
+                    </span>
+                    {proj.demoAdminEmail && (
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <span style={{ fontFamily: 'monospace', fontSize: '0.78rem', color: 'rgba(255,255,255,0.45)' }}>
+                          {proj.demoAdminEmail} / {proj.demoAdminPassword}
+                        </span>
+                        <button
+                          onClick={() => copyToClipboard(`${proj.demoAdminEmail} / ${proj.demoAdminPassword}`, `${proj.code}-admin`)}
+                          style={{ background: 'transparent', border: 'none', color: 'rgba(255,255,255,0.30)', cursor: 'pointer', padding: '2px', display: 'flex' }}
+                        >
+                          {copiedKey === `${proj.code}-admin` ? <Check size={12} color="rgba(255,255,255,0.7)" /> : <Copy size={12} />}
+                        </button>
+                      </div>
+                    )}
+                    {proj.demoCashierEmail && (
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <span style={{ fontFamily: 'monospace', fontSize: '0.78rem', color: 'rgba(255,255,255,0.35)' }}>
+                          {proj.demoCashierEmail} / {proj.demoCashierPassword}
+                        </span>
+                        <button
+                          onClick={() => copyToClipboard(`${proj.demoCashierEmail} / ${proj.demoCashierPassword}`, `${proj.code}-cashier`)}
+                          style={{ background: 'transparent', border: 'none', color: 'rgba(255,255,255,0.30)', cursor: 'pointer', padding: '2px', display: 'flex' }}
+                        >
+                          {copiedKey === `${proj.code}-cashier` ? <Check size={12} color="rgba(255,255,255,0.7)" /> : <Copy size={12} />}
+                        </button>
                       </div>
                     )}
                   </div>
-                </div>
+                )}
 
-                {/* Tech Stack Pills */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap', paddingTop: '14px', borderTop: '1px solid var(--border-subtle)' }}>
-                  <span style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)', fontWeight: '600', textTransform: 'uppercase', marginRight: '4px' }}>
-                    Technologies:
-                  </span>
-                  {proj.techStack && proj.techStack.map((tech, tIdx) => (
-                    <span 
-                      key={tIdx}
-                      style={{
-                        fontSize: '0.75rem',
-                        fontWeight: '500',
-                        color: 'var(--text-secondary)',
-                        background: 'rgba(255, 255, 255, 0.04)',
-                        border: '1px solid var(--border-subtle)',
-                        padding: '3px 8px',
-                        borderRadius: '6px'
-                      }}
-                    >
-                      {tech}
-                    </span>
+                {/* Tech Stack */}
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', paddingTop: '16px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+                  {proj.techStack && proj.techStack.slice(0, 6).map((tech, ti) => (
+                    <span key={ti} className="pill">{tech}</span>
                   ))}
                 </div>
               </div>
-            );
-          })}
+
+            </div>
+          ))}
         </div>
 
-        {/* System Architecture Blueprint Modal */}
-        {selectedArchProject && (
-          <div className="modal-overlay" onClick={() => setSelectedArchProject(null)}>
-            <div 
-              className="card-glass"
-              onClick={(e) => e.stopPropagation()}
-              style={{
-                maxWidth: '800px',
-                width: '100%',
-                maxHeight: '90vh',
-                overflowY: 'auto',
-                padding: '32px',
-                background: '#0c1220',
-                border: '1px solid rgba(255, 255, 255, 0.15)',
-                borderRadius: '20px'
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
-                <div>
-                  <span className="badge badge-brand" style={{ marginBottom: '6px' }}>Architecture Blueprint</span>
-                  <h3 style={{ fontSize: '1.35rem', color: '#fff', fontWeight: '800' }}>
-                    {selectedArchProject.title}
-                  </h3>
-                </div>
-                <button 
-                  onClick={() => setSelectedArchProject(null)}
-                  style={{ background: 'transparent', border: 'none', color: 'var(--text-secondary)', cursor: 'pointer', padding: '6px' }}
-                >
-                  <X size={22} />
-                </button>
-              </div>
-
-              {/* Dataflow Box */}
-              <div style={{ marginBottom: '20px' }}>
-                <div style={{ fontSize: '0.8rem', color: 'var(--color-brand)', fontWeight: '700', textTransform: 'uppercase', marginBottom: '8px' }}>
-                  End-to-End Dataflow Pipeline:
-                </div>
-                <div className="code-box" style={{ fontSize: '0.85rem', lineHeight: 1.7, color: '#e2e8f0', whiteSpace: 'pre-wrap' }}>
-                  {selectedArchProject.systemArchitectureFlow}
-                </div>
-              </div>
-
-              {/* Architectural Highlights */}
-              <div style={{ marginBottom: '24px' }}>
-                <h4 style={{ fontSize: '0.9rem', color: '#fff', fontWeight: '700', marginBottom: '8px' }}>
-                  Architectural Decisions & Resilience:
-                </h4>
-                <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: 1.6 }}>
-                  {selectedArchProject.architecturalHighlights}
-                </p>
-              </div>
-
-              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px' }}>
-                <a 
-                  href={selectedArchProject.githubUrl} 
-                  target="_blank" 
-                  rel="noreferrer"
-                  className="btn btn-secondary btn-sm"
-                >
-                  <Github size={14} /> View on GitHub
-                </a>
-                <button 
-                  onClick={() => setSelectedArchProject(null)}
-                  className="btn btn-primary btn-sm"
-                >
-                  Close Blueprint
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-
       </div>
+
+      {/* Modals */}
+      {videoProject && <VideoModal project={videoProject} onClose={() => setVideoProject(null)} />}
+      {archProject  && <ArchModal  project={archProject}  onClose={() => setArchProject(null)} />}
     </section>
   );
 }
