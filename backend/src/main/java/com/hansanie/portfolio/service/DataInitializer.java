@@ -94,15 +94,15 @@ public class DataInitializer implements CommandLineRunner {
         // Project 2: Velora / Rush Jewels POS
         Project p2 = new Project();
         p2.setCode("velora-pos");
-        p2.setTitle("VELORA / RUSH JEWELS — Enterprise Fine Jewellery E-Commerce & Retail POS Suite");
+        p2.setTitle("RUSH JEWELS (VELORA) — Enterprise Retail POS & Fine Jewellery Suite");
         p2.setCategory("Enterprise Java 17, Spring Boot 3 & Touch POS");
-        p2.setTagLine("Multi-tenant Retail Point-of-Sale Terminal, Barcode Scanning, Multi-Warehouse Inventory & Docker Cloud Deployment");
-        p2.setOverview("A comprehensive Enterprise Retail POS & Luxury Fine Jewellery management suite engineered with Spring Boot 3, featuring touch terminal billing, split cash/card payments, barcode scanner lookup, dynamic metal pricing matrices, and cashier shift reconciliation.");
+        p2.setTagLine("Client: Rush Jewels · Powered by Velora POS Engine & Docker Cloud Deployment");
+        p2.setOverview("A comprehensive Enterprise Retail POS & Luxury Fine Jewellery management suite engineered for Rush Jewels (codebase: Velora) with Spring Boot 3, featuring touch terminal billing, split cash/card payments, barcode scanner lookup, dynamic metal pricing matrices, and cashier shift reconciliation.");
         p2.setArchitecturalHighlights("Engineered with Layered Clean Architecture (Controller -> Service -> DTO -> Repository) on Spring Boot 3.3. Integrates a sub-50ms touch POS terminal supporting barcode hardware scanner events, split payments, instant printable invoice generation, and cashier cash drawer audits. Implements multi-warehouse inventory tracking with automated low-stock threshold alerts and dynamic metal rate calculations (18K, 22K Gold, Platinum 950).");
         p2.setBusinessMetrics("<50ms Barcode Product Lookup | Multi-Warehouse Real-Time Inventory Control | Cashier Shift Reconciliation Audits | 100% Dockerized CI/CD Deployment on Render Cloud");
-        p2.setLiveDemoUrl("https://www.rushjewels.com");
-        p2.setGithubUrl("https://github.com/Hansanie22/Rush-Jewels-Enterprise-POS");
-        p2.setSwaggerUrl("https://www.rushjewels.com/swagger-ui.html");
+        p2.setLiveDemoUrl("https://rush-jewels-portfolio.onrender.com");
+        p2.setGithubUrl("https://github.com/Hansanie22/rush-jewels-portfolio");
+        p2.setSwaggerUrl("https://rush-jewels-portfolio.onrender.com/swagger-ui.html");
         p2.setDemoAdminEmail("admin@velorajewellery.com");
         p2.setDemoAdminPassword("Admin@1234");
         p2.setDemoCashierEmail("cashier@velorajewellery.com");
@@ -121,15 +121,15 @@ public class DataInitializer implements CommandLineRunner {
         // Project 3: AuraCraft / Ceylon Letter Co ERP
         Project p3 = new Project();
         p3.setCode("auracraft-erp");
-        p3.setTitle("AURACRAFT / CEYLON LETTER CO — Bespoke Keepsakes ERP & Automation Suite");
+        p3.setTitle("CEYLON LETTER CO (AURACRAFT) — Bespoke Keepsakes ERP & Automation Suite");
         p3.setCategory("Cloud ERP, Webhooks & Automated Manufacturing Workflow");
-        p3.setTagLine("Real-time Spring Cron Webhook Synchronization, Automated Bill-of-Materials Deduction & Interactive Video Commerce");
-        p3.setOverview("A custom manufacturing ERP and luxury bespoke gifts e-commerce platform featuring automated packaging inventory deduction engines, Spring Cron-scheduled Cloud Webhooks, and interactive luxury video-commerce tag overlays.");
+        p3.setTagLine("Client: Ceylon Letter Co · Powered by AuraCraft Schedulers & BOM Engine");
+        p3.setOverview("A custom manufacturing ERP and bespoke gifts management platform engineered for Ceylon Letter Co (codebase: AuraCraft) featuring automated packaging inventory deduction engines, Spring Cron-scheduled Cloud Webhooks, and interactive luxury video-commerce tag overlays.");
         p3.setArchitecturalHighlights("Engineered with an automated Bill-of-Materials (BOM) deduction engine that automatically deducts custom packaging components (velvet pouches, keepsake boxes, handwritten wax-sealed letters) when order statuses transition. Features high-resilience Spring Cron scheduled Webhook jobs syncing daily sales ledgers to external Google Cloud data engines without human intervention. Includes a high-performance interactive video-commerce interface.");
         p3.setBusinessMetrics("Zero-Data-Loss Automated Webhook Synchronization | 100% Automated Packaging Inventory Deductions | Interactive Video Commerce Engine with Tag Overlays");
-        p3.setLiveDemoUrl("https://www.ceylonletterco.com");
-        p3.setGithubUrl("https://github.com/Hansanie22/AuraCraft-ERP-Suite");
-        p3.setSwaggerUrl("https://www.ceylonletterco.com/swagger-ui.html");
+        p3.setLiveDemoUrl("https://ceylon-letter-co-portfolio.onrender.com");
+        p3.setGithubUrl("https://github.com/Hansanie22/ceylon-letter-co-portfolio");
+        p3.setSwaggerUrl("https://ceylon-letter-co-portfolio.onrender.com/swagger-ui.html");
         p3.setDemoAdminEmail("admin@ceylonletterco.com");
         p3.setDemoAdminPassword("Admin@1234");
         p3.setTechStack(Arrays.asList("Java 17", "Spring Boot 3.3", "Spring Data JPA", "MySQL 8.x", "Cloud Webhooks", "Cron Schedulers", "Chart.js Analytics", "Interactive Video Tagging", "Render Cloud"));

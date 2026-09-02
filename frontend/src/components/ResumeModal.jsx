@@ -132,14 +132,14 @@ export default function ResumeModal({ isOpen, onClose, profile, qualifications, 
               <div style={{ background: 'rgba(255, 255, 255, 0.02)', padding: '16px', borderRadius: '12px', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '8px', marginBottom: '6px' }}>
                   <h3 style={{ fontSize: '0.98rem', fontWeight: '700', color: '#fff' }}>
-                    Velora Jewels — Enterprise Retail POS & Fine Jewellery Suite
+                    Rush Jewels (Velora) — Enterprise Retail POS & Luxury Fine Jewellery Suite
                   </h3>
                   <span style={{ fontSize: '0.78rem', color: '#38bdf8', fontFamily: 'var(--font-mono)' }}>Java 17 • Spring Boot 3 • React • Docker</span>
                 </div>
                 <ul style={{ listStyle: 'disc', paddingLeft: '20px', fontSize: '0.86rem', color: '#94a3b8', lineHeight: 1.55 }}>
-                  <li>Engineered a full-featured Point-of-Sale terminal with sub-50ms barcode hardware scanner events and split cash/card payments.</li>
+                  <li>Engineered client system for Rush Jewels (codebase: Velora) with sub-50ms barcode hardware scanner events and split cash/card payments.</li>
                   <li>Implemented multi-warehouse inventory control with automated low-stock triggers and dynamic precious metal pricing calculation.</li>
-                  <li>Packaged with multi-stage Docker containerization and deployed live on Render Cloud with OpenAPI/Swagger API documentation.</li>
+                  <li>Containerized with Docker and deployed live on Render Cloud (rush-jewels-portfolio.onrender.com) with OpenAPI/Swagger API documentation.</li>
                 </ul>
               </div>
 
@@ -162,13 +162,13 @@ export default function ResumeModal({ isOpen, onClose, profile, qualifications, 
               <div style={{ background: 'rgba(255, 255, 255, 0.02)', padding: '16px', borderRadius: '12px', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '8px', marginBottom: '6px' }}>
                   <h3 style={{ fontSize: '0.98rem', fontWeight: '700', color: '#fff' }}>
-                    AuraCraft / Ceylon Letter Co — Manufacturing ERP & Webhook Automation
+                    Ceylon Letter Co (AuraCraft) — Bespoke Keepsakes ERP & Webhook Automation
                   </h3>
                   <span style={{ fontSize: '0.78rem', color: '#818cf8', fontFamily: 'var(--font-mono)' }}>Java 17 • Spring Data JPA • Cron Schedulers</span>
                 </div>
                 <ul style={{ listStyle: 'disc', paddingLeft: '20px', fontSize: '0.86rem', color: '#94a3b8', lineHeight: 1.55 }}>
-                  <li>Built an automated Bill-of-Materials (BOM) inventory deduction engine utilizing optimistic database transactions.</li>
-                  <li>Implemented resilient Spring Cron scheduled Webhook sync tasks for automated cloud ledger updates.</li>
+                  <li>Built client system for Ceylon Letter Co (codebase: AuraCraft) featuring an automated Bill-of-Materials (BOM) inventory deduction engine.</li>
+                  <li>Implemented resilient Spring Cron scheduled Webhook sync tasks and live deployment on Render Cloud (ceylon-letter-co-portfolio.onrender.com).</li>
                 </ul>
               </div>
             </div>

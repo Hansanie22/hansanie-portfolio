@@ -14,9 +14,9 @@
 
 | # | Project | Live Demo | Tech Stack |
 |---|---------|-----------|------------|
-| 1 | **VELORA / Rush Jewels** — Retail POS & Fine Jewellery Suite | [rushjewels.com](https://www.rushjewels.com) | Java 17, Spring Boot 3, React, Docker, TiDB |
+| 1 | **RUSH JEWELS (Velora)** — Enterprise Retail POS & Fine Jewellery Suite | [Live on Render](https://rush-jewels-portfolio.onrender.com) | Java 17, Spring Boot 3, React, Docker, TiDB |
 | 2 | **GREEN CART** — Native Android Grocery & Subscription Platform | [Live Showcase](https://hansanie22.github.io/greencart-android-portfolio/) | Android Java, MVVM, Room DB, Sensor API, WorkManager |
-| 3 | **AuraCraft / Ceylon Letter Co** — Manufacturing ERP & Automation Suite | [ceylonletterco.com](https://www.ceylonletterco.com) | Java 17, Spring Boot 3, Cloud Webhooks, Cron Schedulers |
+| 3 | **CEYLON LETTER CO (AuraCraft)** — Manufacturing ERP & Automation Suite | [Live on Render](https://ceylon-letter-co-portfolio.onrender.com) | Java 17, Spring Boot 3, Cloud Webhooks, Cron Schedulers |
 
 ---
 
